@@ -1,0 +1,2 @@
+class ConsoleManager:
+    pass

@@ -1,0 +1,5 @@
+PyQt5 == 5.12.1
+tinydb
+requests
+attrs
+cattrs

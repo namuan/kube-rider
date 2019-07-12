@@ -1,0 +1,2 @@
+class NetworkManager:
+    pass

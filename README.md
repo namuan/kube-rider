@@ -1,3 +1,2 @@
-# kube-rider
+# Kube-Rider
 
-Coming soon....

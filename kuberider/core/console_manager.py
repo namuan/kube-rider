@@ -1,2 +1,10 @@
+import subprocess
+
+
 class ConsoleManager:
-    pass
+
+    def run_command(self, command):
+        return subprocess.check_output(
+            command,
+            stderr=subprocess.STDOUT
+        ).decode('utf-8')

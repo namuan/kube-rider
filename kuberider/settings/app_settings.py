@@ -6,7 +6,8 @@ from typing import Any, Union
 from PyQt5.QtCore import QSettings, QStandardPaths
 from PyQt5.QtWidgets import qApp
 
-from . import str_to_bool
+from kuberider.events.event_manager import EventManager
+from ..core import str_to_bool
 
 
 class AppSettings:
@@ -16,6 +17,7 @@ class AppSettings:
         self.app_name: str = None
         self.app_dir: Union[Path, Any] = None
         self.docs_location: Path = Path(QStandardPaths.writableLocation(QStandardPaths.DocumentsLocation))
+        self.event_manager = EventManager()
 
     def init(self):
         self.app_name = qApp.applicationName().lower()

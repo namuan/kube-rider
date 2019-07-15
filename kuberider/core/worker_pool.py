@@ -1,18 +1,49 @@
-from PyQt5.QtCore import QThreadPool
+import os
+
+from PyQt5.QtCore import QThread, pyqtSignal, QObject
+
+from kuberider.core.console_manager import ConsoleManager
+from kuberider.core.mock_console_manager import MockConsoleManager
+
+is_offline = os.getenv("MOCKED", "false").lower() == "true"
 
 
-class WorkerPool:
-    thread_pool = QThreadPool()
-
-    def __init__(self, max_threads):
-        self.thread_pool.setMaxThreadCount(max_threads)
-
-    def schedule(self, worker):
-        self.thread_pool.start(worker)
-
-    def shutdown(self):
-        self.thread_pool.clear()
-        self.thread_pool.waitForDone(msecs=2)
+class CommandSignals(QObject):
+    success = pyqtSignal(dict)
+    failure = pyqtSignal(dict)
 
 
-single_worker = WorkerPool(1)
+class CommandThread(QThread):
+    def __init__(self):
+        self.signals = CommandSignals()
+        self._command = None
+        self.console_manager = MockConsoleManager() if is_offline else ConsoleManager()
+        QThread.__init__(self)
+
+    @property
+    def command(self):
+        return self._command
+
+    @command.setter
+    def command(self, value):
+        self._command = value
+
+    def run(self):
+        if not self._command:
+            print("No Commands to run")
+            return
+        try:
+            output = self.console_manager.run_command(self._command)
+            result = {
+                'command': self._command,
+                'status': True,
+                'output': output
+            }
+            self.signals.success.emit(result)
+        except Exception as e:
+            result = {
+                'command': self._command,
+                'status': False,
+                'output': e
+            }
+            self.signals.failure.emit(result)

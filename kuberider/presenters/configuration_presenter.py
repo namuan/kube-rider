@@ -1,6 +1,6 @@
 import logging
 
-from ..core.app_settings import app_settings
+from kuberider.settings.app_settings import app_settings
 
 
 class ConfigurationPresenter:

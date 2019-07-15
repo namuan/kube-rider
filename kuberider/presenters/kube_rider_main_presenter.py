@@ -1,7 +1,7 @@
 import logging
 
-from ..core.app_settings import app_settings
-from ..core.worker_pool import single_worker
+from kuberider.kube_contexts.contexts_interactor import KubeContextsLoader
+from kuberider.settings.app_settings import app_settings
 
 
 class KubeRiderMainPresenter:
@@ -15,6 +15,8 @@ class KubeRiderMainPresenter:
         if app_settings.window_state():
             self.view.restoreState(app_settings.window_state())
 
+        self.kube_contexts_loader = KubeContextsLoader()
+
     def after_window_loaded(self):
         if not self.initial_load:
             return
@@ -24,17 +26,7 @@ class KubeRiderMainPresenter:
         self.check_updates()
 
     def refresh_app(self):
-        self.show_frame()
-
-    def show_frame(self):
-        """Decide whether to display an empty frame or not"""
-        app_ready = True
-        if app_ready:
-            logging.info(f"App Ready. Hiding Empty Frame")
-            logging.info(f"App Ready. Showing Data Frame")
-        else:
-            logging.info(f"App Not Ready. Showing Empty Frame")
-            logging.info(f"App Not Ready. Hiding Data Frame")
+        self.kube_contexts_loader.load_contexts()
 
     def check_updates(self):
         if app_settings.load_updates_configuration():
@@ -48,5 +40,4 @@ class KubeRiderMainPresenter:
         )
 
     def shutdown(self):
-        single_worker.shutdown()
         self.save_settings()

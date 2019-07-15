@@ -2,38 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e33d2ec1-f756-4e6f-87e9-a3eaca26f166" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/kuberider/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/application.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/core/app_settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/core/worker_pool.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/generated/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/images/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/images/configure-48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/images/download-48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/images/download-disabled-48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/presenters/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/presenters/configuration_presenter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/presenters/empty_frame_presenter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/presenters/file_menu_presenter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/presenters/kube_rider_main_presenter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/resources.qrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/resources_rc.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/themes/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/themes/light.qss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/themes/light_theme.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/configuration_dialog.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/empty_frame_window.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/kube_rider_main_window.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/menus.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/progress_dialog.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/shortcuts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/toolbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kuberider/ui/updater_dialog.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/ui/configuration_dialog.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/core/mock_console_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/events/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/events/event_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/events/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/kube_contexts/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/kube_contexts/contexts_interactor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/mock_responses/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/mock_responses/k_get_contexts.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/mock_responses/k_get_current_context.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kuberider/settings/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kube-rider.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kube-rider.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/core/app_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/settings/app_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/core/console_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/core/console_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/core/worker_pool.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/core/worker_pool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/generated/kube_rider_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/generated/kube_rider_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/presenters/configuration_presenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/presenters/configuration_presenter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/presenters/kube_rider_main_presenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/presenters/kube_rider_main_presenter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/resources_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/resources_rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kuberider/ui/shortcuts.py" beforeDir="false" afterPath="$PROJECT_DIR$/kuberider/ui/shortcuts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ui/kube_rider_main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ui/kube_rider_main.ui" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,19 +31,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kuberider/ui/progress_dialog.py">
+        <entry file="file://$PROJECT_DIR$/kuberider/core/mock_console_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="160">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -72,9 +57,12 @@
     <findStrings>
       <find>kuberider</find>
       <find>http</find>
+      <find>test_shortcut</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_CHANGES_POLICY" value="SHELVE" />
+    <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -90,28 +78,27 @@
         <option value="$PROJECT_DIR$/kuberider/core/__init__.py" />
         <option value="$PROJECT_DIR$/kuberider/generated/kube_rider_main.py" />
         <option value="$PROJECT_DIR$/kuberider/ui/empty_frame_window.py" />
-        <option value="$PROJECT_DIR$/kuberider/presenters/empty_frame_presenter.py" />
         <option value="$PROJECT_DIR$/kuberider/presenters/file_menu_presenter.py" />
         <option value="$PROJECT_DIR$/kuberider/ui/menus.py" />
         <option value="$PROJECT_DIR$/kuberider/presenters/configuration_presenter.py" />
         <option value="$PROJECT_DIR$/kuberider/ui/toolbar.py" />
-        <option value="$PROJECT_DIR$/kuberider/presenters/kube_rider_main_presenter.py" />
         <option value="$PROJECT_DIR$/kuberider/core/app_settings.py" />
         <option value="$PROJECT_DIR$/kuberider/ui/configuration_dialog.py" />
         <option value="$PROJECT_DIR$/kuberider/ui/kube_rider_main_window.py" />
         <option value="$PROJECT_DIR$/kuberider/__init__.py" />
-        <option value="$PROJECT_DIR$/kuberider/ui/shortcuts.py" />
         <option value="$PROJECT_DIR$/kuberider/ui/progress_dialog.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/kube-rider.iml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/kuberider/events/event_manager.py" />
+        <option value="$PROJECT_DIR$/kuberider/events/signals.py" />
+        <option value="$PROJECT_DIR$/kuberider/settings/app_settings.py" />
+        <option value="$PROJECT_DIR$/kuberider/ui/shortcuts.py" />
+        <option value="$PROJECT_DIR$/kuberider/presenters/empty_frame_presenter.py" />
+        <option value="$PROJECT_DIR$/kuberider/core/console_manager.py" />
+        <option value="$PROJECT_DIR$/kuberider/kube_contexts/contexts_interactor.py" />
+        <option value="$PROJECT_DIR$/kuberider/presenters/kube_rider_main_presenter.py" />
+        <option value="$PROJECT_DIR$/kuberider/mock_responses/k_get_contexts.txt" />
+        <option value="$PROJECT_DIR$/kuberider/mock_responses/k_get_current_context.txt" />
+        <option value="$PROJECT_DIR$/kuberider/core/worker_pool.py" />
+        <option value="$PROJECT_DIR$/kuberider/core/mock_console_manager.py" />
       </list>
     </option>
   </component>
@@ -125,6 +112,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -148,31 +136,7 @@
               <item name="kube-rider" type="b2602c69:ProjectViewProjectNode" />
               <item name="kube-rider" type="462c0819:PsiDirectoryNode" />
               <item name="kuberider" type="462c0819:PsiDirectoryNode" />
-              <item name="generated" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kube-rider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kube-rider" type="462c0819:PsiDirectoryNode" />
-              <item name="kuberider" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kube-rider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kube-rider" type="462c0819:PsiDirectoryNode" />
-              <item name="kuberider" type="462c0819:PsiDirectoryNode" />
-              <item name="presenters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kube-rider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kube-rider" type="462c0819:PsiDirectoryNode" />
-              <item name="kuberider" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kube-rider" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kube-rider" type="462c0819:PsiDirectoryNode" />
-              <item name="kuberider" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="mock_responses" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kube-rider" type="b2602c69:ProjectViewProjectNode" />
@@ -189,14 +153,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/kuberider/presenters" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/kuberider/core" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -208,11 +172,14 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/kuberider/settings" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/kuberider/core" />
       <recent name="$PROJECT_DIR$/kuberider/presenters" />
       <recent name="$PROJECT_DIR$/kuberider/ui" />
       <recent name="$PROJECT_DIR$/resources/ui" />
-      <recent name="$PROJECT_DIR$/kuberider/core" />
       <recent name="$PROJECT_DIR$/kuberider" />
     </key>
   </component>
@@ -229,14 +196,15 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="main_mocked" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="kube-rider" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="MOCKED" value="true" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python3" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kuberider" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -253,7 +221,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main_mocked" />
       </list>
     </recent_temporary>
   </component>
@@ -270,17 +238,18 @@
       <workItem from="1562907088583" duration="87000" />
       <workItem from="1562907185390" duration="2524000" />
       <workItem from="1562909753000" duration="371000" />
+      <workItem from="1563055260585" duration="5515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2982000" />
+    <option name="totallyTimeSpent" value="8497000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="745" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25755286" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2613293" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -318,7 +287,7 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.sh" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/kube_rider$main.coverage" NAME="main Coverage Results" MODIFIED="1562910129351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kuberider" />
+    <SUITE FILE_PATH="coverage/kube_rider$main.coverage" NAME="main_mocked Coverage Results" MODIFIED="1563178976025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/kuberider" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/kuberider/themes/pyg.css" />
@@ -351,41 +320,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/core/worker_pool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/ui/updater_dialog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="45" lean-forward="true" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/generated/kube_rider_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kuberider/ui/empty_frame_window.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/presenters/empty_frame_presenter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -419,26 +357,6 @@
           <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/presenters/kube_rider_main_presenter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/core/app_settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -515,36 +433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/application.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/ui/kube_rider_main_window.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="42" column="40" lean-forward="true" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuberider/ui/shortcuts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kuberider/ui/configuration_dialog.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
@@ -557,11 +445,153 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kuberider/ui/progress_dialog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+        <state relative-caret-position="300">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/core/network_manager.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/core/data_manager.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/events/signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/settings/app_settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/generated/kube_rider_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/events/event_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/ui/updater_dialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/ui/kube_rider_main_window.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/ui/shortcuts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="65" lean-forward="true" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/presenters/empty_frame_presenter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/kube_contexts/contexts_interactor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/presenters/kube_rider_main_presenter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/mock_responses/k_get_contexts.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/mock_responses/k_get_current_context.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/core/console_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/core/worker_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kuberider/core/mock_console_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>

@@ -1,4 +1,5 @@
 import os
+import logging
 
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 
@@ -31,7 +32,7 @@ class CommandThread(QThread):
 
     def run(self):
         if not self._command:
-            print("No Commands to run")
+            logging.warning("No Commands to run")
             return
         try:
             app.data.save_command(self._command)

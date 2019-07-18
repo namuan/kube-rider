@@ -1,2 +1,0 @@
-class EventManager:
-    pass

@@ -4,6 +4,7 @@ from PyQt5.QtCore import QThread, pyqtSignal, QObject
 
 from kuberider.core.console_manager import ConsoleManager
 from kuberider.core.mock_console_manager import MockConsoleManager
+from kuberider.settings.app_settings import app
 
 is_offline = os.getenv("MOCKED", "false").lower() == "true"
 
@@ -33,6 +34,7 @@ class CommandThread(QThread):
             print("No Commands to run")
             return
         try:
+            app.data.save_command(self._command)
             output = self.console_manager.run_command(self._command)
             result = {
                 'command': self._command,

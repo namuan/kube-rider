@@ -1,19 +1,36 @@
-import logging
-
+from kuberider.core.kube_command_builder import Kcb
 from kuberider.core.worker_pool import CommandThread
+from kuberider.settings.app_settings import app
 
 
-class KubeContextsLoader:
+class ContextsLoaderInteractor:
     def __init__(self):
         self.ct = CommandThread()
 
     def load_contexts(self):
-        command = "kubectl config get-contexts --output='name'"
-        self.ct.command = command
-        self.ct.signals.success.connect(self.on_result)
-        self.ct.signals.failure.connect(self.on_result)
-        self.ct.start()
+        Kcb.build("config get-contexts --output='name'").start(
+            self.ct,
+            on_success=self.on_result,
+            on_failure=self.on_result
+        )
 
     def on_result(self, result):
-        logging.info(f"Result from command: {result['command']} => {result['status']}")
-        logging.info(f"Output: {result['output']}")
+        output = result['output']
+        contexts = output.splitlines()
+        app.data.save_contexts(contexts)
+
+
+class CurrentContextInteractor:
+    def __init__(self):
+        self.ct = CommandThread()
+
+    def current_context(self):
+        Kcb.build("config current-contexts").start(
+            self.ct,
+            on_success=self.on_result,
+            on_failure=self.on_result
+        )
+
+    def on_result(self, result):
+        output = result['output']
+        app.data.update_current_context(output)

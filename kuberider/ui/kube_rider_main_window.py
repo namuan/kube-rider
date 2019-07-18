@@ -5,6 +5,8 @@ import traceback
 from PyQt5.QtGui import QDesktopServices, QCloseEvent, QIcon
 from PyQt5.QtWidgets import QMainWindow, QToolBar, qApp
 
+from kuberider.presenters.console_presenter import ConsolePresenter
+from kuberider.presenters.toolbar_presenter import ToolbarPresenter
 from ..generated.kube_rider_main import Ui_MainWindow
 from ..presenters.empty_frame_presenter import EmptyFramePresenter
 from ..presenters.file_menu_presenter import FileMenuPresenter
@@ -14,7 +16,7 @@ from ..ui.empty_frame_window import EmptyFrameWindow
 from ..ui.menus import menu_items
 from ..ui.progress_dialog import ProgressDialog
 from ..ui.shortcuts import shortcut_items
-from ..ui.toolbar import tool_bar_items
+from ..ui.toolbar import toolbar_items
 from ..ui.updater_dialog import Updater
 
 
@@ -31,13 +33,15 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
         # Add Components on Main Window
         self.updater = Updater(self)
         self.menu_bar = self.menuBar()
-        self.tool_bar = QToolBar()
+        self.toolbar = QToolBar()
         self.status_bar = self.statusBar()
         self.status_bar.showMessage('Ready', 5000)
 
         # Initialise Presenters
         self.presenter = KubeRiderMainPresenter(self)
         self.file_menu_presenter = FileMenuPresenter(self)
+        self.toolbar_presenter = ToolbarPresenter(self.toolbar)
+        self.console_presenter = ConsolePresenter(self.console_text_edit)
 
         # Custom Dialogs
         self.progress_dialog = ProgressDialog(self)
@@ -45,7 +49,7 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
 
         # Initialise Components
         menu_items(self)
-        tool_bar_items(self)
+        toolbar_items(self)
         shortcut_items(self)
 
         # Initialise Sub-Systems
@@ -77,7 +81,7 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
         update_available = True if latest > current else False
         logging.info(f"Update Available ({latest} > {current}) ? ({update_available}) Enable Toolbar Icon")
         if update_available:
-            toolbar_actions = self.tool_bar.actions()
+            toolbar_actions = self.toolbar.actions()
             updates_action = next(act for act in toolbar_actions if act.text() == 'Update Available')
             if updates_action:
                 updates_action.setIcon(QIcon(":/images/download-48.png"))

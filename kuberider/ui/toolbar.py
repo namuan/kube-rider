@@ -3,44 +3,44 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 
 
-def tool_bar_items(self):
+def toolbar_items(self):
     """Create a tool bar for the main window."""
-    self.tool_bar.setObjectName("maintoolbar")
-    self.addToolBar(Qt.TopToolBarArea, self.tool_bar)
-    self.tool_bar.setMovable(False)
+    self.toolbar.setObjectName("maintoolbar")
+    self.addToolBar(Qt.TopToolBarArea, self.toolbar)
+    self.toolbar.setMovable(False)
 
-    tool_bar_configure_action = QAction(QIcon(":/images/configure-48.png"), 'Settings', self)
-    tool_bar_configure_action.triggered.connect(self.configuration_dialog.show_dialog)
-    self.tool_bar.addAction(tool_bar_configure_action)
+    toolbar_configure_action = QAction(QIcon(":/images/configure-48.png"), 'Settings', self)
+    toolbar_configure_action.triggered.connect(self.configuration_dialog.show_dialog)
+    self.toolbar.addAction(toolbar_configure_action)
 
-    self.tool_bar.addSeparator()
+    self.toolbar.addSeparator()
 
-    tool_bar_ctx_list = QComboBox(self)
-    tool_bar_ctx_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
-    tool_bar_ctx_list.setDuplicatesEnabled(False)
-    tool_bar_ctx_list.currentTextChanged.connect(lambda x: x)
-    tool_bar_ctx_list_action = QWidgetAction(self)
-    tool_bar_ctx_list_action.setText("Contexts")
-    tool_bar_ctx_list_action.setDefaultWidget(tool_bar_ctx_list)
-    self.tool_bar.addAction(tool_bar_ctx_list_action)
+    toolbar_ctx_list = QComboBox(self)
+    toolbar_ctx_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+    toolbar_ctx_list.setDuplicatesEnabled(False)
+    toolbar_ctx_list.currentTextChanged.connect(lambda x: x)
+    toolbar_ctx_list_action = QWidgetAction(self)
+    toolbar_ctx_list_action.setText("Contexts")
+    toolbar_ctx_list_action.setDefaultWidget(toolbar_ctx_list)
+    self.toolbar.addAction(toolbar_ctx_list_action)
 
-    self.tool_bar.addSeparator()
+    self.toolbar.addSeparator()
 
-    tool_bar_ns_list = QComboBox(self)
-    tool_bar_ns_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
-    tool_bar_ns_list.setDuplicatesEnabled(False)
-    tool_bar_ns_list.currentTextChanged.connect(lambda x: x)
-    tool_bar_ns_list_action = QWidgetAction(self)
-    tool_bar_ns_list_action.setText("Namespaces")
-    tool_bar_ns_list_action.setDefaultWidget(tool_bar_ns_list)
-    self.tool_bar.addAction(tool_bar_ns_list_action)
+    toolbar_ns_list = QComboBox(self)
+    toolbar_ns_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+    toolbar_ns_list.setDuplicatesEnabled(False)
+    toolbar_ns_list.currentTextChanged.connect(lambda x: x)
+    toolbar_ns_list_action = QWidgetAction(self)
+    toolbar_ns_list_action.setText("Namespaces")
+    toolbar_ns_list_action.setDefaultWidget(toolbar_ns_list)
+    self.toolbar.addAction(toolbar_ns_list_action)
 
     spacer = QWidget(self)
     spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.tool_bar.addWidget(spacer)
+    self.toolbar.addWidget(spacer)
 
-    tool_bar_update_available = QAction(QIcon(":/images/download-disabled-48.png"), 'Update Available', self)
-    tool_bar_update_available.setEnabled(False)
-    tool_bar_update_available.triggered.connect(self.open_releases_page)
+    toolbar_update_available = QAction(QIcon(":/images/download-disabled-48.png"), 'Update Available', self)
+    toolbar_update_available.setEnabled(False)
+    toolbar_update_available.triggered.connect(self.open_releases_page)
 
-    self.tool_bar.addAction(tool_bar_update_available)
+    self.toolbar.addAction(toolbar_update_available)

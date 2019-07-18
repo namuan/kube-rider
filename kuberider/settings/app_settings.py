@@ -6,7 +6,7 @@ from typing import Any, Union
 from PyQt5.QtCore import QSettings, QStandardPaths
 from PyQt5.QtWidgets import qApp
 
-from kuberider.events.event_manager import EventManager
+from kuberider.entities.data_manager import DataManager
 from ..core import str_to_bool
 
 
@@ -17,7 +17,7 @@ class AppSettings:
         self.app_name: str = None
         self.app_dir: Union[Path, Any] = None
         self.docs_location: Path = Path(QStandardPaths.writableLocation(QStandardPaths.DocumentsLocation))
-        self.event_manager = EventManager()
+        self.data = DataManager()
 
     def init(self):
         self.app_name = qApp.applicationName().lower()
@@ -64,4 +64,4 @@ class AppSettings:
         return self.settings.value("windowState", None)
 
 
-app_settings = AppSettings()
+app = AppSettings()

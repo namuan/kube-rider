@@ -1,11 +1,10 @@
 class Kcb:
-    kubectl = "kubectl"
     command = ""
 
-    @classmethod
-    def build(cls, command):
-        c = cls()
-        c.command = f"{cls.kubectl} {command}"
+    @staticmethod
+    def build(command):
+        c = Kcb()
+        c.command = f"kubectl {command}"
         return c
 
     def start(self, command_thread, on_success=None, on_failure=None):

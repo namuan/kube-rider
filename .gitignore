@@ -104,3 +104,8 @@ venv.bak/
 .mypy_cache/
 .idea/workspace.xml
 .DS_Store
+
+# IntelliJ
+.idea/dictionaries/jk.xml
+.idea/workspace.xml
+.idea

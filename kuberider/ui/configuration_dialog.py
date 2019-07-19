@@ -9,6 +9,7 @@ class ConfigurationDialog(QDialog, Ui_Configuration):
     def __init__(self, parent=None):
         super(ConfigurationDialog, self).__init__(parent)
         self.setupUi(self)
+        self.setFixedSize(self.size())
         self.presenter = ConfigurationPresenter(self, parent)
 
     def show_dialog(self):

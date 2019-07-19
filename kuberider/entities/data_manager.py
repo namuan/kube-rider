@@ -26,3 +26,9 @@ class DataManager:
         logging.info(f"Context changed: {current_context}")
         self.app_state.current_context = current_context
         self.signals.context_changed.emit(current_context)
+
+    def update_command_status(self, command, started=False):
+        if started:
+            self.signals.command_started.emit(command)
+        else:
+            self.signals.command_finished.emit(command)

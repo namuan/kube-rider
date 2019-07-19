@@ -3,12 +3,12 @@ from kuberider.core.worker_pool import CommandThread
 from kuberider.settings.app_settings import app
 
 
-class ContextsLoaderInteractor:
+class NamespacesLoaderInteractor:
     def __init__(self):
         self.ct = CommandThread()
 
-    def load_contexts(self):
-        Kcb.init().command("config get-contexts --output='name'").start(
+    def load_namespaces(self):
+        Kcb.init().ctx().command(f"config get-namespaces").start(
             self.ct,
             on_success=self.on_result,
             on_failure=self.on_result
@@ -20,12 +20,12 @@ class ContextsLoaderInteractor:
         app.data.save_contexts(contexts)
 
 
-class CurrentContextInteractor:
+class CurrentNamespaceInteractor:
     def __init__(self):
         self.ct = CommandThread()
 
-    def current_context(self):
-        Kcb.init().command("config current-contexts").start(
+    def current_namespace(self):
+        Kcb.init().ctx().command(f"config current-namespace").start(
             self.ct,
             on_success=self.on_result,
             on_failure=self.on_result

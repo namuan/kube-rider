@@ -1,4 +1,5 @@
 import logging
+import time
 from pathlib import Path
 
 command_file_mapping = {
@@ -15,6 +16,7 @@ class MockConsoleManager:
         logging.debug(f"Running command: {command}")
         mock_repsonse = command_file_mapping.get(command, None)
         if mock_repsonse:
+            time.sleep(1)
             return self.mock_responses_dir.joinpath(mock_repsonse).read_text()
         else:
             return f"No Mock found for command: {command}"

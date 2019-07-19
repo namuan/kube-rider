@@ -1,5 +1,5 @@
-import os
 import logging
+import os
 
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 
@@ -11,6 +11,8 @@ is_offline = os.getenv("MOCKED", "false").lower() == "true"
 
 
 class CommandSignals(QObject):
+    started = pyqtSignal(str)
+    finished = pyqtSignal(str)
     success = pyqtSignal(dict)
     failure = pyqtSignal(dict)
 
@@ -36,7 +38,9 @@ class CommandThread(QThread):
             return
         try:
             app.data.save_command(self._command)
+            self.signals.started.emit(self._command)
             output = self.console_manager.run_command(self._command)
+            self.signals.finished.emit(self._command)
             result = {
                 'command': self._command,
                 'status': True,

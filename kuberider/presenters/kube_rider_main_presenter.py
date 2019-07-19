@@ -17,6 +17,7 @@ class KubeRiderMainPresenter:
 
         self.contexts_loader = ContextsLoaderInteractor()
         self.current_context = CurrentContextInteractor()
+        app.data.signals.contexts_loaded.connect(self.on_contexts_loaded)
 
     def after_window_loaded(self):
         if not self.initial_load:
@@ -28,6 +29,8 @@ class KubeRiderMainPresenter:
 
     def refresh_app(self):
         self.contexts_loader.load_contexts()
+
+    def on_contexts_loaded(self):
         self.current_context.current_context()
 
     def check_updates(self):

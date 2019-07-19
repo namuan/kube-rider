@@ -2,6 +2,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QKeyEvent
 from PyQt5.QtWidgets import (QDialog)
 
+from kuberider.settings.app_settings import app
 from ..generated.progress_dialog import Ui_ProgressDialog
 
 
@@ -11,6 +12,8 @@ class ProgressDialog(QDialog, Ui_ProgressDialog):
         super(ProgressDialog, self).__init__(parent)
         self.initialize()
         self.btn_cancel_progress.pressed.connect(self.cancel_processing)
+        app.data.signals.command_started.connect(self.show_dialog)
+        app.data.signals.command_finished.connect(self.hide_dialog)
 
     def initialize(self):
         self.setupUi(self)
@@ -18,8 +21,6 @@ class ProgressDialog(QDialog, Ui_ProgressDialog):
 
     def cancel_processing(self):
         self.update_status("Cancelling....")
-        # @todo: Temp: Hide Dialog based on some event
-        self.hide_dialog()
 
     def show_dialog(self, message=""):
         self.lbl_progress_status.setText(message)

@@ -18,6 +18,12 @@ class Ui_Configuration(object):
         self.tabWidget = QtWidgets.QTabWidget(Configuration)
         self.tabWidget.setGeometry(QtCore.QRect(12, 6, 461, 201))
         self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.txt_kubectl = QtWidgets.QLineEdit(self.tab)
+        self.txt_kubectl.setGeometry(QtCore.QRect(10, 10, 441, 21))
+        self.txt_kubectl.setObjectName("txt_kubectl")
+        self.tabWidget.addTab(self.tab, "")
         self.update = QtWidgets.QWidget()
         self.update.setObjectName("update")
         self.chk_updates_startup = QtWidgets.QCheckBox(self.update)
@@ -39,6 +45,8 @@ class Ui_Configuration(object):
     def retranslateUi(self, Configuration):
         _translate = QtCore.QCoreApplication.translate
         Configuration.setWindowTitle(_translate("Configuration", "Settings"))
+        self.txt_kubectl.setPlaceholderText(_translate("Configuration", "path to kubectl ..."))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Configuration", "Settings"))
         self.chk_updates_startup.setText(_translate("Configuration", "Check for updates on start up"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.update), _translate("Configuration", "Updates"))
         self.btn_save_configuration.setText(_translate("Configuration", "OK"))

@@ -50,12 +50,16 @@ class AppSettings:
         self.settings.setValue('windowState', window_state)
         self.settings.sync()
 
-    def save_configuration(self, updates_check):
+    def save_configuration(self, updates_check, kubectl_path):
+        self.settings.setValue('kubectl', kubectl_path)
         self.settings.setValue('startupCheck', updates_check)
         self.settings.sync()
 
     def load_updates_configuration(self):
         return str_to_bool(self.settings.value("startupCheck", True))
+
+    def load_kubectl_path(self):
+        return self.settings.value('kubectl')
 
     def geometry(self):
         return self.settings.value("geometry", None)

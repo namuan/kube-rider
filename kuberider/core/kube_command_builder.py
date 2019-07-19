@@ -1,10 +1,14 @@
+from kuberider.settings.app_settings import app
+
+
 class Kcb:
     command = ""
 
     @staticmethod
     def build(command):
+        kubectl_path = app.load_kubectl_path()
         c = Kcb()
-        c.command = f"kubectl {command}"
+        c.command = f"{kubectl_path} {command}"
         return c
 
     def start(self, command_thread, on_success=None, on_failure=None):

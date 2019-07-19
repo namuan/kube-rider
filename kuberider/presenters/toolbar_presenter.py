@@ -1,10 +1,11 @@
+from kuberider.kube_contexts.namespaces_interactor import NamespacesLoaderInteractor
 from kuberider.settings.app_settings import app
 
 
 class ToolbarPresenter:
     def __init__(self, toolbar):
         self.toolbar = toolbar
-
+        self.namespaces = NamespacesLoaderInteractor()
         # events
         app.data.signals.contexts_loaded.connect(self.on_contexts_loaded)
         app.data.signals.context_changed.connect(self.on_context_changed)
@@ -17,6 +18,7 @@ class ToolbarPresenter:
     def on_context_changed(self, context_name):
         contexts_ui = self.__get_combox_box("Contexts")
         contexts_ui.setCurrentText(context_name)
+        # self.namespaces.load_namespaces()
 
     def on_contexts_loaded(self):
         contexts_ui = self.__get_combox_box("Contexts")

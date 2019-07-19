@@ -18,7 +18,7 @@ class ToolbarPresenter:
     def on_context_changed(self, context_name):
         contexts_ui = self.__get_combox_box("Contexts")
         contexts_ui.setCurrentText(context_name)
-        # self.namespaces.load_namespaces()
+        self.namespaces.load_namespaces()
 
     def on_contexts_loaded(self):
         contexts_ui = self.__get_combox_box("Contexts")

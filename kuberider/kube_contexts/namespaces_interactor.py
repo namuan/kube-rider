@@ -16,8 +16,9 @@ class NamespacesLoaderInteractor:
 
     def on_result(self, result):
         output = result['output']
-        contexts = output.splitlines()
-        app.data.save_contexts(contexts)
+        namespaces = []
+        # contexts = output.splitlines()
+        app.data.save_namespaces(namespaces)
 
 
 class CurrentNamespaceInteractor:
@@ -33,4 +34,4 @@ class CurrentNamespaceInteractor:
 
     def on_result(self, result):
         output = result['output']
-        app.data.update_current_context(output)
+        app.data.update_current_namespace(output)

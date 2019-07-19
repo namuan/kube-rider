@@ -37,3 +37,13 @@ class DataManager:
             self.signals.command_started.emit(command)
         else:
             self.signals.command_finished.emit(command)
+
+    def save_namespaces(self, namespaces):
+        logging.info(f"Namespaces added: {len(namespaces)}")
+        self.app_state.namespaces = namespaces
+        self.signals.namespaces_loaded.emit()
+
+    def update_current_namespace(self, current_namespace):
+        logging.info(f"Namespace changed: {current_namespace}")
+        self.app_state.current_namespace = current_namespace
+        self.signals.namespace_changed.emit(current_namespace)

@@ -17,7 +17,7 @@ class AppSettings:
         self.app_name: str = None
         self.app_dir: Union[Path, Any] = None
         self.docs_location: Path = Path(QStandardPaths.writableLocation(QStandardPaths.DocumentsLocation))
-        self.data = DataManager()
+        self.data = None
 
     def init(self):
         self.app_name = qApp.applicationName().lower()
@@ -26,6 +26,7 @@ class AppSettings:
         settings_file = f"{self.app_name}.ini"
         self.settings = QSettings(self.app_dir.joinpath(settings_file).as_posix(), QSettings.IniFormat)
         self.settings.sync()
+        self.data = DataManager(self.app_dir)
 
     def init_logger(self):
         log_file = f"{self.app_name}.log"

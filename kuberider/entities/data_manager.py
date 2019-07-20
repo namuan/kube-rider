@@ -1,6 +1,8 @@
 import logging
 from typing import List
 
+import dataset
+
 from kuberider.entities.model import AppState
 from kuberider.events.signals import AppSignals
 
@@ -9,10 +11,25 @@ class DataManager:
     signals = AppSignals()
     app_state = AppState()
 
+    def __init__(self, app_dir):
+        db_path = f"sqlite:///{app_dir}/kuberider.db"
+        self.db = dataset.connect(db_path)
+
+    def update_app_state_in_db(self, app_state_entity: AppState):
+        table = self.db[app_state_entity.record_type]
+        table.upsert(
+            dict(
+                name=app_state_entity.record_type,
+                object=app_state_entity.to_json_str()
+            ),
+            ['name']
+        )
+
     def save_contexts(self, contexts):
         logging.info(f"Contexts added: {len(contexts)}")
         self.app_state.contexts = contexts
         self.signals.contexts_loaded.emit()
+        self.update_app_state_in_db(self.app_state)
 
     def load_contexts(self) -> List[str]:
         return self.app_state.contexts
@@ -26,8 +43,9 @@ class DataManager:
         logging.info(f"Context changed: {current_context}")
         self.app_state.current_context = current_context
         self.signals.context_changed.emit(current_context)
+        self.update_app_state_in_db(self.app_state)
 
-    def get_current_context(self):
+    def get_current_context(self) -> str:
         current_context = self.app_state.current_context
         logging.info(f"Current context: {current_context}")
         return current_context
@@ -42,8 +60,10 @@ class DataManager:
         logging.info(f"Namespaces added: {len(namespaces)}")
         self.app_state.namespaces = namespaces
         self.signals.namespaces_loaded.emit()
+        self.update_app_state_in_db(self.app_state)
 
     def update_current_namespace(self, current_namespace):
         logging.info(f"Namespace changed: {current_namespace}")
         self.app_state.current_namespace = current_namespace
         self.signals.namespace_changed.emit(current_namespace)
+        self.update_app_state_in_db(self.app_state)

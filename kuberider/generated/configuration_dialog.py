@@ -45,6 +45,7 @@ class Ui_Configuration(object):
     def retranslateUi(self, Configuration):
         _translate = QtCore.QCoreApplication.translate
         Configuration.setWindowTitle(_translate("Configuration", "Settings"))
+        self.txt_kubectl.setText(_translate("Configuration", "kubectl"))
         self.txt_kubectl.setPlaceholderText(_translate("Configuration", "path to kubectl ..."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Configuration", "Settings"))
         self.chk_updates_startup.setText(_translate("Configuration", "Check for updates on start up"))

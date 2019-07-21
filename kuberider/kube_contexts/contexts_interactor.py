@@ -25,7 +25,7 @@ class CurrentContextInteractor:
         self.ct = CommandThread()
 
     def current_context(self):
-        Kcb.init().command("config current-contexts").start(
+        Kcb.init().command("config current-context").start(
             self.ct,
             on_success=self.on_result,
             on_failure=self.on_result
@@ -33,4 +33,4 @@ class CurrentContextInteractor:
 
     def on_result(self, result):
         output = result['output']
-        app.data.update_current_context(output)
+        app.data.update_current_context(output.strip())

@@ -40,7 +40,6 @@ class CommandThread(QThread):
             app.data.save_command(self._command)
             self.signals.started.emit(self._command)
             output = self.console_manager.run_command(self._command)
-            self.signals.finished.emit(self._command)
             result = {
                 'command': self._command,
                 'status': True,
@@ -54,3 +53,5 @@ class CommandThread(QThread):
                 'output': e
             }
             self.signals.failure.emit(result)
+        finally:
+            self.signals.finished.emit(self._command)

@@ -59,7 +59,7 @@ class AppSettings:
         return str_to_bool(self.settings.value("startupCheck", True))
 
     def load_kubectl_path(self):
-        return self.settings.value('kubectl')
+        return self.settings.value('kubectl') or "kubectl"
 
     def geometry(self):
         return self.settings.value("geometry", None)

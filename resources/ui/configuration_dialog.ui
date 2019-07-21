@@ -44,6 +44,9 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="text">
+      <string>kubectl</string>
+     </property>
      <property name="placeholderText">
       <string>path to kubectl ...</string>
      </property>

@@ -8,7 +8,7 @@ class NamespacesLoaderInteractor:
         self.ct = CommandThread()
 
     def load_namespaces(self):
-        Kcb.init().ctx().command(f"config get-namespaces").start(
+        Kcb.init().ctx().command(f"get namespaces").start(
             self.ct,
             on_success=self.on_result,
             on_failure=self.on_result

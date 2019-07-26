@@ -47,6 +47,7 @@ class CommandThread(QThread):
             }
             self.signals.success.emit(result)
         except Exception as e:
+            logging.error(e)
             result = {
                 'command': self._command,
                 'status': False,

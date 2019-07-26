@@ -28,7 +28,6 @@ class DataManager:
     def save_contexts(self, contexts):
         logging.info(f"Contexts added: {len(contexts)}")
         self.app_state.contexts = contexts
-        self.signals.contexts_loaded.emit()
         self.update_app_state_in_db(self.app_state)
 
     def load_contexts(self) -> List[str]:
@@ -42,7 +41,6 @@ class DataManager:
     def update_current_context(self, current_context):
         logging.info(f"Context changed: {current_context}")
         self.app_state.current_context = current_context
-        self.signals.context_changed.emit(current_context)
         self.update_app_state_in_db(self.app_state)
 
     def get_current_context(self) -> str:
@@ -59,11 +57,12 @@ class DataManager:
     def save_namespaces(self, namespaces):
         logging.info(f"Namespaces added: {len(namespaces)}")
         self.app_state.namespaces = namespaces
-        self.signals.namespaces_loaded.emit()
         self.update_app_state_in_db(self.app_state)
 
     def update_current_namespace(self, current_namespace):
         logging.info(f"Namespace changed: {current_namespace}")
         self.app_state.current_namespace = current_namespace
-        self.signals.namespace_changed.emit(current_namespace)
         self.update_app_state_in_db(self.app_state)
+
+    def load_namespaces(self):
+        return self.app_state.namespaces

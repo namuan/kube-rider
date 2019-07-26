@@ -1,4 +1,6 @@
-from kuberider.domain.contexts_interactor import ChangeContextInteractor
+import logging
+
+from kuberider.domain.contexts_interactor import ChangeContextInteractor, CurrentContextInteractor
 from kuberider.domain.namespaces_interactor import NamespacesLoaderInteractor
 from kuberider.settings.app_settings import app
 
@@ -8,6 +10,7 @@ class ToolbarPresenter:
         self.toolbar = toolbar
         self.namespaces = NamespacesLoaderInteractor()
         self.change_context = ChangeContextInteractor()
+        self.current_context = CurrentContextInteractor()
         self.contexts_loaded = False
 
         # events
@@ -30,7 +33,6 @@ class ToolbarPresenter:
     def on_context_changed(self, context_name):
         contexts_ui = self.__get_combox_box("Contexts")
         contexts_ui.setCurrentText(context_name)
-        self.namespaces.load_namespaces()
 
     def on_contexts_loaded(self):
         contexts_ui = self.__get_combox_box("Contexts")
@@ -39,8 +41,10 @@ class ToolbarPresenter:
         for ctx in contexts:
             contexts_ui.addItem(ctx)
 
+        self.current_context.current_context()
         self.contexts_loaded = True
 
     def on_current_context_changed(self, new_context_name):
         if self.contexts_loaded:
-            self.change_context.update(new_context_name)
+            self.change_context.update_context(new_context_name)
+            self.namespaces.load_namespaces()

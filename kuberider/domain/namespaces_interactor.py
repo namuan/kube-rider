@@ -1,3 +1,5 @@
+import logging
+
 from kuberider.core.kube_command_builder import Kcb
 from kuberider.core.worker_pool import CommandThread
 from kuberider.entities.model import KubeNamespaces

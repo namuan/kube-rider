@@ -1,6 +1,6 @@
 import logging
 
-from kuberider.kube_contexts.contexts_interactor import ContextsLoaderInteractor, CurrentContextInteractor
+from kuberider.domain.contexts_interactor import ContextsLoaderInteractor, CurrentContextInteractor
 from kuberider.settings.app_settings import app
 
 

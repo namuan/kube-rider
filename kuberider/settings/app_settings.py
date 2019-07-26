@@ -17,7 +17,7 @@ class AppSettings:
         self.app_name: str = None
         self.app_dir: Union[Path, Any] = None
         self.docs_location: Path = Path(QStandardPaths.writableLocation(QStandardPaths.DocumentsLocation))
-        self.data = None
+        self.data: DataManager = None
 
     def init(self):
         self.app_name = qApp.applicationName().lower()
@@ -40,7 +40,7 @@ class AppSettings:
 
         logging.basicConfig(
             handlers=handlers,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            format='%(asctime)s - %(filename)s:%(lineno)d - %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S',
             level=logging.DEBUG
         )

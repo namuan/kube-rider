@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 from typing import List, Dict
 
 import attr
@@ -51,10 +50,3 @@ class KubeNamespaces(object):
         if not json_str:
             return cls()
         return cattr.structure(json.loads(json_str), cls)
-
-
-if __name__ == '__main__':
-    mock_file = Path("..").joinpath("mock_responses").joinpath("k_get_qa_namespaces.json").read_text(encoding='utf-8')
-    mock_object = json.loads(mock_file)
-    namespaces = KubeNamespaces.from_json(mock_object)
-    print(namespaces.items[0].metadata.get("name"))

@@ -5,14 +5,12 @@ import traceback
 from PyQt5.QtGui import QDesktopServices, QCloseEvent, QIcon
 from PyQt5.QtWidgets import QMainWindow, QToolBar, qApp
 
-from kuberider.presenters.console_presenter import ConsolePresenter
-from kuberider.presenters.toolbar_presenter import ToolbarPresenter
 from ..generated.kube_rider_main import Ui_MainWindow
-from ..presenters.empty_frame_presenter import EmptyFramePresenter
+from ..presenters.console_presenter import ConsolePresenter
 from ..presenters.file_menu_presenter import FileMenuPresenter
 from ..presenters.kube_rider_main_presenter import KubeRiderMainPresenter
+from ..presenters.toolbar_presenter import ToolbarPresenter
 from ..ui.configuration_dialog import ConfigurationDialog
-from ..ui.empty_frame_window import EmptyFrameWindow
 from ..ui.menus import menu_items
 from ..ui.progress_dialog import ProgressDialog
 from ..ui.shortcuts import shortcut_items
@@ -24,11 +22,6 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(KubeRiderMainWindow, self).__init__(parent)
         self.setupUi(self)
-
-        # Empty Frame setup
-        self.empty_frame_window = EmptyFrameWindow(self)
-        self.empty_frame_presenter = EmptyFramePresenter(self.empty_frame_window)
-        self.empty_frame_presenter.display()
 
         # Add Components on Main Window
         self.updater = Updater(self)

@@ -8,7 +8,8 @@ command_file_mapping = {
     "kubectl --context qa get namespaces -o json": "k_get_qa_namespaces.json",
     "kubectl --context development get namespaces -o json": "k_get_test_namespaces.json",
     "kubectl --context test get namespaces -o json": "k_get_test_namespaces.json",
-    "kubectl --context qa --namespace default get pods -o json": "k_get_qa_default_pods.json"
+    "kubectl --context qa --namespace default get pods -o json": "k_get_qa_multiple_pods.json",
+    "kubectl --context qa --namespace kube-public get pods -o json": "k_get_qa_single_pod.json"
 }
 
 

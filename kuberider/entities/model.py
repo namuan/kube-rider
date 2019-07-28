@@ -89,5 +89,5 @@ class KubePods(object):
         return cattr.structure(json.loads(json_str), cls)
 
 # if __name__ == '__main__':
-#     mock_file = Path("..").joinpath("mock_responses").joinpath("k_get_qa_default_pods.json").read_text(encoding='utf-8')
+#     mock_file = Path("..").joinpath("mock_responses").joinpath("k_get_qa_multiple_pods.json").read_text(encoding='utf-8')
 #     pods = KubePods.from_json_str(mock_file)

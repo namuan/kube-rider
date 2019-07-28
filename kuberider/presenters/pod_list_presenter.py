@@ -3,6 +3,7 @@ import logging
 from PyQt5 import QtWidgets
 
 from kuberider.domain.pods_interactor import GetPodsInteractor
+from kuberider.entities.model import KubePodItem
 from kuberider.settings.app_settings import app
 from kuberider.widgets.pod_item_widget import PodItemWidget
 
@@ -12,9 +13,17 @@ class PodListPresenter:
         self.view = parent_view
         self.get_pods = GetPodsInteractor()
 
-        # events
+        # ui events
+        self.view.clicked.connect(self.ui_pod_selected)
+
+        # domain events
         app.data.signals.namespace_changed.connect(self.on_namespace_changed)
         app.data.signals.pods_loaded.connect(self.on_pods_loaded)
+
+    def ui_pod_selected(self):
+        item = self.view.itemWidget(self.view.selectedItems()[0])
+        pod_item: KubePodItem = item.get_data()
+        logging.info(f"Selected {pod_item}")
 
     def on_namespace_changed(self, namespace):
         self.get_pods.run()

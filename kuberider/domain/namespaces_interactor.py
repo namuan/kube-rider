@@ -1,21 +1,16 @@
-import logging
-
-from kuberider.core.kube_command_builder import Kcb
-from kuberider.core.worker_pool import CommandThread
+from kuberider.domain.interactor import Interactor
 from kuberider.entities.model import KubeNamespaces
 from kuberider.settings.app_settings import app
 
 
-class NamespacesLoaderInteractor:
+class NamespacesLoaderInteractor(Interactor):
     def __init__(self):
-        self.ct = CommandThread()
+        super().__init__(
+            on_success=self.on_result, on_failure=self.on_result
+        )
 
     def load_namespaces(self):
-        Kcb.init().ctx().command(f"get namespaces -o json").start(
-            self.ct,
-            on_success=self.on_result,
-            on_failure=self.on_result
-        )
+        self.kcb.ctx().command(f"get namespaces -o json").start()
 
     def on_result(self, result):
         output = result['output']
@@ -25,18 +20,7 @@ class NamespacesLoaderInteractor:
         app.data.signals.namespaces_loaded.emit()
 
 
-class CurrentNamespaceInteractor:
-    def __init__(self):
-        self.ct = CommandThread()
-
-    def current_namespace(self):
-        Kcb.init().ctx().command(f"config current-namespace").start(
-            self.ct,
-            on_success=self.on_result,
-            on_failure=self.on_result
-        )
-
-    def on_result(self, result):
-        output = result['output']
-        app.data.update_current_namespace(output)
-        app.data.signals.namespace_changed.emit(output)
+class ChangeNamespaceInteractor(Interactor):
+    def update_namespace(self, namespace):
+        app.data.update_current_namespace(namespace)
+        app.data.signals.namespace_changed.emit(namespace)

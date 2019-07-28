@@ -1,7 +1,7 @@
 import logging
 
 from kuberider.domain.contexts_interactor import ChangeContextInteractor, CurrentContextInteractor
-from kuberider.domain.namespaces_interactor import NamespacesLoaderInteractor
+from kuberider.domain.namespaces_interactor import NamespacesLoaderInteractor, ChangeNamespaceInteractor
 from kuberider.settings.app_settings import app
 
 
@@ -11,7 +11,9 @@ class ToolbarPresenter:
         self.namespaces = NamespacesLoaderInteractor()
         self.change_context = ChangeContextInteractor()
         self.current_context = CurrentContextInteractor()
+        self.change_namespace = ChangeNamespaceInteractor()
         self.contexts_loaded = False
+        self.namespaces_loaded = False
 
         # events
         app.data.signals.contexts_loaded.connect(self.on_contexts_loaded)
@@ -30,6 +32,10 @@ class ToolbarPresenter:
         for ns in namespaces:
             namespaces_ui.addItem(ns)
 
+        self.namespaces_loaded = True
+        if namespaces:
+            self.on_current_namespace_changed(namespaces[0])
+
     def on_context_changed(self, context_name):
         contexts_ui = self.__get_combox_box("Contexts")
         contexts_ui.setCurrentText(context_name)
@@ -46,5 +52,11 @@ class ToolbarPresenter:
 
     def on_current_context_changed(self, new_context_name):
         if self.contexts_loaded:
+            self.namespaces_loaded = False
             self.change_context.update_context(new_context_name)
             self.namespaces.load_namespaces()
+
+    def on_current_namespace_changed(self, new_namespace_name):
+        if self.namespaces_loaded:
+            logging.info(f"Current namespace changed to {new_namespace_name}. Should get pods")
+            self.change_namespace.update_namespace(new_namespace_name)

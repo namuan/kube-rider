@@ -22,11 +22,8 @@ class KubeRiderMainPresenter:
             return
 
         self.initial_load = False
-        self.refresh_app()
-        self.check_updates()
-
-    def refresh_app(self):
         self.contexts_loader.load_contexts()
+        self.check_updates()
 
     def check_updates(self):
         if app.load_updates_configuration():

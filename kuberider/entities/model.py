@@ -1,5 +1,5 @@
 import json
-from typing import List, Dict
+from typing import List, Dict, Any
 
 import attr
 import cattr
@@ -40,13 +40,48 @@ class KubeNamespace(object):
 
 @attr.s(auto_attribs=True)
 class KubeNamespaces(object):
-    apiVersion: str = ""
-    kind: str = ""
-    metadata: Dict = {}
-    items: List[KubeNamespace] = []
+    apiVersion: str
+    kind: str
+    metadata: Dict
+    items: List[KubeNamespace]
 
     @classmethod
     def from_json_str(cls, json_str):
-        if not json_str:
-            return cls()
         return cattr.structure(json.loads(json_str), cls)
+
+
+@attr.s(auto_attribs=True)
+class KubePodItem(object):
+    apiVersion: str
+    kind: Any
+    metadata: Dict
+    spec: Dict
+    status: Dict
+
+    @property
+    def name(self):
+        return "Hello-node"
+
+    @property
+    def count(self):
+        return "1/1"
+
+    @property
+    def pod_status(self):
+        return "ContainerCreating"
+
+
+@attr.s(auto_attribs=True)
+class KubePods(object):
+    apiVersion: str
+    items: List[KubePodItem]
+    kind: Any
+    metadata: Any
+
+    @classmethod
+    def from_json_str(cls, json_str):
+        return cattr.structure(json.loads(json_str), cls)
+
+# if __name__ == '__main__':
+#     mock_file = Path("..").joinpath("mock_responses").joinpath("k_get_qa_default_pods.json").read_text(encoding='utf-8')
+#     pods = KubePods.from_json_str(mock_file)

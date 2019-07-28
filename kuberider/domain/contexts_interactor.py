@@ -1,18 +1,15 @@
-from kuberider.core.kube_command_builder import Kcb
-from kuberider.core.worker_pool import CommandThread
+from kuberider.domain.interactor import Interactor
 from kuberider.settings.app_settings import app
 
 
-class ContextsLoaderInteractor:
+class ContextsLoaderInteractor(Interactor):
     def __init__(self):
-        self.ct = CommandThread()
+        super().__init__(
+            on_success=self.on_result, on_failure=self.on_result
+        )
 
     def load_contexts(self):
-        Kcb.init().command("config get-contexts --output='name'").start(
-            self.ct,
-            on_success=self.on_result,
-            on_failure=self.on_result
-        )
+        self.kcb.command("config get-contexts --output='name'").start()
 
     def on_result(self, result):
         output = result['output']
@@ -21,16 +18,14 @@ class ContextsLoaderInteractor:
         app.data.signals.contexts_loaded.emit()
 
 
-class CurrentContextInteractor:
+class CurrentContextInteractor(Interactor):
     def __init__(self):
-        self.ct = CommandThread()
+        super().__init__(
+            on_success=self.on_result, on_failure=self.on_result
+        )
 
     def current_context(self):
-        Kcb.init().command("config current-context").start(
-            self.ct,
-            on_success=self.on_result,
-            on_failure=self.on_result
-        )
+        self.kcb.command("config current-context").start()
 
     def on_result(self, result):
         output = result['output']
@@ -38,6 +33,6 @@ class CurrentContextInteractor:
         app.data.signals.context_changed.emit(output)
 
 
-class ChangeContextInteractor:
+class ChangeContextInteractor(Interactor):
     def update_context(self, new_context):
         app.data.update_current_context(new_context)

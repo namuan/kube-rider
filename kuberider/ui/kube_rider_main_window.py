@@ -5,6 +5,7 @@ import traceback
 from PyQt5.QtGui import QDesktopServices, QCloseEvent, QIcon
 from PyQt5.QtWidgets import QMainWindow, QToolBar, qApp
 
+from kuberider.presenters.pod_list_presenter import PodListPresenter
 from ..generated.kube_rider_main import Ui_MainWindow
 from ..presenters.console_presenter import ConsolePresenter
 from ..presenters.file_menu_presenter import FileMenuPresenter
@@ -34,6 +35,7 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
         self.presenter = KubeRiderMainPresenter(self)
         self.file_menu_presenter = FileMenuPresenter(self)
         self.toolbar_presenter = ToolbarPresenter(self.toolbar)
+        self.pod_list_presenter = PodListPresenter(self.lst_pods)
         self.console_presenter = ConsolePresenter(self.console_text_edit)
 
         # Custom Dialogs

@@ -13,6 +13,5 @@ class GetPodsInteractor(Interactor):
     def on_result(self, result):
         output = result['output']
         kube_pods: KubePods = KubePods.from_json_str(output)
-        pods = [pod for pod in kube_pods.items]
-        app.data.save_pods(pods)
+        app.data.save_pods(kube_pods.items)
 

@@ -60,15 +60,21 @@ class KubePodItem(object):
 
     @property
     def name(self):
-        return "Hello-node"
+        return self.metadata.get('name')
 
     @property
     def count(self):
-        return "1/1"
+        total = len([c for c in self.status.get('containerStatuses', [])])
+        ready = len([
+            c
+            for c in self.status.get('containerStatuses', [])
+            if c.get('ready')
+        ])
+        return f"{ready}/{total}"
 
     @property
     def pod_status(self):
-        return "ContainerCreating"
+        return self.status.get('phase')
 
 
 @attr.s(auto_attribs=True)

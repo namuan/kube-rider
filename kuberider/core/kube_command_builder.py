@@ -1,21 +1,33 @@
+from PyQt5.QtCore import QObject
+
 from kuberider.core.worker_pool import CommandThread
 from kuberider.settings.app_settings import app
 
 
-class Kcb:
+class Kcb(QObject):
     kubectl = None
-    command = None
+    command_thread = None
+    _command = None
     ctx_param = None
     ns_param = None
 
     @staticmethod
-    def init():
+    def init(command_thread: CommandThread):
         c = Kcb()
         c.kubectl = app.load_kubectl_path()
+        c.command_thread = command_thread
+
+        c.command_thread.signals.started.connect(
+            lambda c: app.data.update_command_status(c, started=True)
+        )
+        c.command_thread.signals.finished.connect(
+            lambda c: app.data.update_command_status(c, started=False)
+        )
+
         return c
 
     def command(self, command):
-        self.command = command
+        self._command = command
         return self
 
     def ctx(self):
@@ -32,19 +44,11 @@ class Kcb:
             c += f" {self.ctx_param}"
         if self.ns_param:
             c += f" {self.ns_param}"
-        if self.command:
-            c += f" {self.command}"
+        if self._command:
+            c += f" {self._command}"
 
         return c
 
-    def start(self, command_thread: CommandThread, on_success=None, on_failure=None):
-        command_thread.command = self.complete_command()
-        command_thread.signals.success.connect(on_success)
-        command_thread.signals.failure.connect(on_failure)
-        command_thread.signals.started.connect(
-            lambda c: app.data.update_command_status(c, started=True)
-        )
-        command_thread.signals.finished.connect(
-            lambda c: app.data.update_command_status(c, started=False)
-        )
-        command_thread.start()
+    def start(self):
+        self.command_thread.command = self.complete_command()
+        self.command_thread.start()

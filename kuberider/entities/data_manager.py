@@ -50,9 +50,7 @@ class DataManager:
         self.update_app_state_in_db(self.app_state)
 
     def get_current_context(self) -> str:
-        current_context = self.app_state.current_context
-        logging.info(f"Current context: {current_context}")
-        return current_context
+        return self.app_state.current_context
 
     def save_namespaces(self, namespaces):
         logging.info(f"Namespaces added: {len(namespaces)}")
@@ -66,3 +64,9 @@ class DataManager:
 
     def load_namespaces(self):
         return self.app_state.namespaces
+
+    def get_current_namespace(self):
+        return self.app_state.current_namespace
+
+    def save_pods(self, pods):
+        self.signals.pods_loaded.emit(pods)

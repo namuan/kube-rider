@@ -7,7 +7,8 @@ command_file_mapping = {
     "kubectl config current-context": "k_get_current_context.txt",
     "kubectl --context qa get namespaces -o json": "k_get_qa_namespaces.json",
     "kubectl --context development get namespaces -o json": "k_get_test_namespaces.json",
-    "kubectl --context test get namespaces -o json": "k_get_test_namespaces.json"
+    "kubectl --context test get namespaces -o json": "k_get_test_namespaces.json",
+    "kubectl --context qa --namespace default get pods -o json": "k_get_qa_default_pods.json"
 }
 
 

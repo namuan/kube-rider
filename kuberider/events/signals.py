@@ -9,3 +9,5 @@ class AppSignals(QObject):
     command_finished = pyqtSignal(str)
     namespaces_loaded = pyqtSignal()
     namespace_changed = pyqtSignal(str)
+    pods_loaded = pyqtSignal(list)
+

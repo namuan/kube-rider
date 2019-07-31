@@ -4,7 +4,7 @@ from typing import List
 import dataset
 
 from kuberider.entities.model import AppState
-from kuberider.events.signals import AppSignals
+from kuberider.events.signals import AppSignals, AppCommands
 
 
 class DataManager:

@@ -11,3 +11,6 @@ class AppSignals(QObject):
     namespace_changed = pyqtSignal(str)
     pods_loaded = pyqtSignal(list)
 
+
+class AppCommands(QObject):
+    reload_pods = pyqtSignal()

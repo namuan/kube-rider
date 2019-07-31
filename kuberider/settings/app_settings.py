@@ -7,6 +7,7 @@ from PyQt5.QtCore import QSettings, QStandardPaths
 from PyQt5.QtWidgets import qApp
 
 from kuberider.entities.data_manager import DataManager
+from kuberider.events.signals import AppCommands
 from ..core import str_to_bool
 
 
@@ -18,6 +19,7 @@ class AppSettings:
         self.app_dir: Union[Path, Any] = None
         self.docs_location: Path = Path(QStandardPaths.writableLocation(QStandardPaths.DocumentsLocation))
         self.data: DataManager = None
+        self.commands: AppCommands = AppCommands()
 
     def init(self):
         self.app_name = qApp.applicationName().lower()

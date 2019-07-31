@@ -12,8 +12,8 @@ class ProgressDialog(QDialog, Ui_ProgressDialog):
         super(ProgressDialog, self).__init__(parent)
         self.initialize()
         self.btn_cancel_progress.pressed.connect(self.cancel_processing)
-        app.data.signals.command_started.connect(self.show_dialog)
-        app.data.signals.command_finished.connect(self.hide_dialog)
+        # app.data.signals.command_started.connect(self.show_dialog)
+        # app.data.signals.command_finished.connect(self.hide_dialog)
 
     def initialize(self):
         self.setupUi(self)

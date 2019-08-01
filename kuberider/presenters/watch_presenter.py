@@ -11,6 +11,8 @@ class WatchPresenter:
         self.timer = QTimer()
 
         # ui events
+        self.view.btn_update_test.clicked.connect(self.update_pending_pod)
+        self.view.btn_log_test.clicked.connect(self.log_test)
         self.view.chk_watch.stateChanged.connect(self.update_timer)
         self.timer.timeout.connect(self.on_timer_timeout)
 
@@ -26,3 +28,10 @@ class WatchPresenter:
 
     def on_timer_timeout(self):
         app.commands.reload_pods.emit()
+
+    def update_pending_pod(self):
+        logging.info(f"Update Pending Pod here")
+        app.commands.update_pods.emit()
+
+    def log_test(self):
+        app.commands.log_pods.emit()

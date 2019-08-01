@@ -3,6 +3,7 @@ from typing import Optional, List
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt, QAbstractItemModel
+from PyQt5.QtWidgets import QListWidgetItem
 
 from kuberider.domain.pods_interactor import GetPodsInteractor
 from kuberider.entities.model import KubePodItem
@@ -40,38 +41,58 @@ class PodListPresenter:
         if selected_items:
             item = self.view.itemWidget(self.view.selectedItems()[0])
             return item.get_data()
-        else:
-            None
 
     def on_pods_loaded(self, pods: List[KubePodItem]):
         logging.info(f"on_pods_loaded: Displaying {len(pods)}")
         pod_item = self.currently_selected_pod()
 
-        self.view.clear()
         for pod in pods:
             self.add_or_update_pod_item(pod)
 
         if pod_item:
-            logging.info(f"Re-Select {pod_item} in list")
+            existing_pod_index = self.find_pod_index_by_name(pod_item.name)
+            if existing_pod_index:
+                item_widget = self.view.item(existing_pod_index.row())
+                self.view.setCurrentItem(item_widget)
+
+    def find_pod_index_by_name(self, pod_name):
+        m: QAbstractItemModel = self.view.model()
+        items = m.match(m.index(0, 0), Qt.UserRole, pod_name, 1, Qt.MatchExactly)
+        return items[0] if items else None
 
     def add_or_update_pod_item(self, pod_info: KubePodItem):
-        pod_widget = PodItemWidget(pod_info, self.view)
-        pod_widget_item = QtWidgets.QListWidgetItem(self.view)
-        pod_widget_item.setData(Qt.UserRole, pod_info.name)
-        pod_widget_item.setSizeHint(pod_widget.sizeHint())
+        existing_pod_index = self.find_pod_index_by_name(pod_info.name)
 
-        m: QAbstractItemModel = self.view.model()
-        items = m.match(m.index(0, 0), Qt.UserRole, pod_info.name, 1, Qt.MatchExactly)
-        if items:
-            item_row = items[0].row()
-            self.view.takeItem(item_row)
-            self.view.insertItem(item_row, pod_widget_item)
+        if existing_pod_index:
+            item_row = existing_pod_index.row()
+            existing_pod_info = self.pod_at_row(item_row)
+            if self.pod_changed(existing_pod_info, pod_info):
+                self.view.takeItem(item_row)
+                pod_widget = PodItemWidget(pod_info, self.view)
+                pod_widget_item = QtWidgets.QListWidgetItem(self.view)
+                pod_widget_item.setData(Qt.UserRole, pod_info.name)
+                pod_widget_item.setSizeHint(pod_widget.sizeHint())
+                self.view.insertItem(item_row, pod_widget_item)
+                self.view.setItemWidget(pod_widget_item, pod_widget)
         else:
+            pod_widget = PodItemWidget(pod_info, self.view)
+            pod_widget_item = QtWidgets.QListWidgetItem(self.view)
+            pod_widget_item.setData(Qt.UserRole, pod_info.name)
+            pod_widget_item.setSizeHint(pod_widget.sizeHint())
             self.view.addItem(pod_widget_item)
+            self.view.setItemWidget(pod_widget_item, pod_widget)
 
-        self.view.setItemWidget(pod_widget_item, pod_widget)
+    def pod_changed(self, old, new):
+        is_changed = old.name != new.name or old.pod_status != new.pod_status
+        return is_changed
+
+    def pod_at_row(self, item_row):
+        item_widget = self.view.item(item_row)
+        pod_widget: PodItemWidget = self.view.itemWidget(item_widget)
+        return pod_widget.get_data()
 
     def update_pending_pod(self):
+        """Only for testing. Remove later"""
         pod_to_update = "hello-node-64c578bdf8-mwpff"
         changed_pod: KubePodItem = KubePodItem(
             apiVersion="",
@@ -85,8 +106,12 @@ class PodListPresenter:
         self.add_or_update_pod_item(changed_pod)
 
     def log_all_pods(self):
-        for ic in range(self.view.count()):
-            item_widget = self.view.item(ic)
+        """Only for testing. Remove later"""
+        total_items = self.view.count()
+        logging.info(f"Logging All Pods: {total_items}")
+        for ic in range(total_items):
+            item_widget: QListWidgetItem = self.view.item(ic)
             pod_widget = self.view.itemWidget(item_widget)
+            print(item_widget.text())
             pod_info = pod_widget.get_data()
             logging.info(f"{pod_info.name} -> {pod_info.pod_status}")

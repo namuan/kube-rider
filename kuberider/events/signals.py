@@ -1,5 +1,7 @@
 from PyQt5.QtCore import QObject, pyqtSignal
 
+from kuberider.entities.model import KubePodItem
+
 
 class AppSignals(QObject):
     contexts_loaded = pyqtSignal()
@@ -10,6 +12,7 @@ class AppSignals(QObject):
     namespaces_loaded = pyqtSignal()
     namespace_changed = pyqtSignal(str)
     pods_loaded = pyqtSignal(list)
+    pod_selected = pyqtSignal(KubePodItem)
 
 
 class AppCommands(QObject):

@@ -1,5 +1,5 @@
 import json
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 import attr
 import cattr
@@ -51,6 +51,33 @@ class KubeNamespaces(object):
 
 
 @attr.s(auto_attribs=True)
+class KubePodContainer(object):
+    name: str
+    image: str
+    volumeMounts: Dict
+    ready: bool
+    container_id: str
+    restart_count: Optional[int]
+
+    @classmethod
+    def from_spec(cls, json_spec, json_container_statuses):
+        container_name = json_spec.get('name', None)
+        container_status = next(cs for cs in json_container_statuses if cs.get('name') == container_name)
+
+        return cls(
+            name=json_spec.get('name', None),
+            image=json_spec.get('image', None),
+            ready=container_status.get('ready', False),
+            container_id=container_status.get('containerID', None),
+            restart_count=container_status.get('restartCount', None),
+            volumeMounts={
+                vol.get('name'): vol.get('mountPath')
+                for vol in json_spec.get('volumeMounts', [])
+            }
+        )
+
+
+@attr.s(auto_attribs=True)
 class KubePodItem(object):
     apiVersion: str
     kind: Any
@@ -75,6 +102,17 @@ class KubePodItem(object):
     @property
     def pod_status(self):
         return self.status.get('phase')
+
+    @property
+    def containers(self):
+        return [
+            KubePodContainer.from_spec(container_spec, self.status.get('containerStatuses'))
+            for container_spec in self.spec.get('containers', [])
+        ]
+
+    @property
+    def volumes(self):
+        return []
 
 
 @attr.s(auto_attribs=True)

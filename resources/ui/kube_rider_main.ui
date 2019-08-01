@@ -67,6 +67,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="btn_reload_pods">
+            <property name="text">
+             <string>Reload</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="btn_update_test">
             <property name="text">
              <string>Update</string>
@@ -146,14 +153,22 @@
             </property>
             <item>
              <widget class="QTabWidget" name="tabWidget">
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
               <widget class="QWidget" name="tab_3">
                <attribute name="title">
-                <string>Tab 1</string>
+                <string>Containers</string>
                </attribute>
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <item>
+                 <widget class="QListWidget" name="lst_pod_containers"/>
+                </item>
+               </layout>
               </widget>
               <widget class="QWidget" name="tab_4">
                <attribute name="title">
-                <string>Tab 2</string>
+                <string>Volumes</string>
                </attribute>
               </widget>
              </widget>

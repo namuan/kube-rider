@@ -29,6 +29,7 @@ class PodListPresenter:
     def ui_pod_selected(self):
         pod_item: KubePodItem = self.currently_selected_pod()
         logging.info(f"Selected {pod_item}")
+        app.data.signals.pod_selected.emit(pod_item)
 
     def on_namespace_changed(self, namespace):
         self.get_all_pods()

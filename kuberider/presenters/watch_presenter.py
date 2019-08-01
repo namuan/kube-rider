@@ -13,6 +13,7 @@ class WatchPresenter:
         # ui events
         self.view.btn_update_test.clicked.connect(self.update_pending_pod)
         self.view.btn_log_test.clicked.connect(self.log_test)
+        self.view.btn_reload_pods.clicked.connect(lambda _: app.commands.reload_pods.emit())
         self.view.chk_watch.stateChanged.connect(self.update_timer)
         self.timer.timeout.connect(self.on_timer_timeout)
 

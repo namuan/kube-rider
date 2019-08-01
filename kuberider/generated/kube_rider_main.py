@@ -40,6 +40,9 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setObjectName("label")
         self.horizontalLayout_4.addWidget(self.label)
+        self.btn_reload_pods = QtWidgets.QPushButton(self.frame)
+        self.btn_reload_pods.setObjectName("btn_reload_pods")
+        self.horizontalLayout_4.addWidget(self.btn_reload_pods)
         self.btn_update_test = QtWidgets.QPushButton(self.frame)
         self.btn_update_test.setObjectName("btn_update_test")
         self.horizontalLayout_4.addWidget(self.btn_update_test)
@@ -81,6 +84,11 @@ class Ui_MainWindow(object):
         self.tabWidget.setObjectName("tabWidget")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.tab_3)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.lst_pod_containers = QtWidgets.QListWidget(self.tab_3)
+        self.lst_pod_containers.setObjectName("lst_pod_containers")
+        self.horizontalLayout_6.addWidget(self.lst_pod_containers)
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
@@ -102,6 +110,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -109,10 +118,11 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", ":::: KubeRider ::::"))
         self.chk_watch.setText(_translate("MainWindow", "Watch"))
         self.label.setText(_translate("MainWindow", "seconds"))
+        self.btn_reload_pods.setText(_translate("MainWindow", "Reload"))
         self.btn_update_test.setText(_translate("MainWindow", "Update"))
         self.btn_log_test.setText(_translate("MainWindow", "Log"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Tab 1"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Tab 2"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Containers"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Volumes"))
 
 
 import resources_rc

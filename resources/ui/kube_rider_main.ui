@@ -66,6 +66,20 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="btn_update_test">
+            <property name="text">
+             <string>Update</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_log_test">
+            <property name="text">
+             <string>Log</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>

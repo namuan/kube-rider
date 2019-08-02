@@ -166,11 +166,6 @@
                 </item>
                </layout>
               </widget>
-              <widget class="QWidget" name="tab_4">
-               <attribute name="title">
-                <string>Volumes</string>
-               </attribute>
-              </widget>
              </widget>
             </item>
            </layout>

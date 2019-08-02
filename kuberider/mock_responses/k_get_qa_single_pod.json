@@ -6,12 +6,12 @@
       "kind": "Pod",
       "metadata": {
         "creationTimestamp": "2019-07-27T10:43:24Z",
-        "generateName": "hello-node-64c578bdf8-",
+        "generateName": "hello-java-64c578bdf8-",
         "labels": {
-          "app": "hello-node",
+          "app": "hello-java",
           "pod-template-hash": "64c578bdf8"
         },
-        "name": "hello-node-64c578bdf8-mwpff",
+        "name": "hello-java-64c578bdf8-mwpff",
         "namespace": "default",
         "ownerReferences": [
           {
@@ -19,20 +19,20 @@
             "blockOwnerDeletion": true,
             "controller": true,
             "kind": "ReplicaSet",
-            "name": "hello-node-64c578bdf8",
+            "name": "hello-java-64c578bdf8",
             "uid": "5bcd3208-b05b-11e9-afeb-080027f575a9"
           }
         ],
         "resourceVersion": "3473",
-        "selfLink": "/api/v1/namespaces/default/pods/hello-node-64c578bdf8-mwpff",
+        "selfLink": "/api/v1/namespaces/default/pods/hello-java-64c578bdf8-mwpff",
         "uid": "5bcf9b2d-b05b-11e9-afeb-080027f575a9"
       },
       "spec": {
         "containers": [
           {
-            "image": "gcr.io/hello-minikube-zero-install/hello-node",
+            "image": "gcr.io/hello-minikube-zero-install/hello-java",
             "imagePullPolicy": "Always",
-            "name": "hello-node",
+            "name": "hello-java",
             "resources": {},
             "terminationMessagePath": "/dev/termination-log",
             "terminationMessagePolicy": "File",
@@ -90,7 +90,7 @@
           {
             "lastProbeTime": null,
             "lastTransitionTime": "2019-07-27T10:43:24Z",
-            "message": "containers with unready status: [hello-node]",
+            "message": "containers with unready status: [hello-java]",
             "reason": "ContainersNotReady",
             "status": "False",
             "type": "Ready"
@@ -98,7 +98,7 @@
           {
             "lastProbeTime": null,
             "lastTransitionTime": "2019-07-27T10:43:24Z",
-            "message": "containers with unready status: [hello-node]",
+            "message": "containers with unready status: [hello-java]",
             "reason": "ContainersNotReady",
             "status": "False",
             "type": "ContainersReady"
@@ -112,10 +112,10 @@
         ],
         "containerStatuses": [
           {
-            "image": "gcr.io/hello-minikube-zero-install/hello-node",
+            "image": "gcr.io/hello-minikube-zero-install/hello-java",
             "imageID": "",
             "lastState": {},
-            "name": "hello-node",
+            "name": "hello-java",
             "ready": false,
             "restartCount": 0,
             "state": {

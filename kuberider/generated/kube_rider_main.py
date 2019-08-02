@@ -90,9 +90,6 @@ class Ui_MainWindow(object):
         self.lst_pod_containers.setObjectName("lst_pod_containers")
         self.horizontalLayout_6.addWidget(self.lst_pod_containers)
         self.tabWidget.addTab(self.tab_3, "")
-        self.tab_4 = QtWidgets.QWidget()
-        self.tab_4.setObjectName("tab_4")
-        self.tabWidget.addTab(self.tab_4, "")
         self.horizontalLayout_2.addWidget(self.tabWidget)
         self.frame_4 = QtWidgets.QFrame(self.splitter_2)
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -122,7 +119,6 @@ class Ui_MainWindow(object):
         self.btn_update_test.setText(_translate("MainWindow", "Update"))
         self.btn_log_test.setText(_translate("MainWindow", "Log"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Containers"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Volumes"))
 
 
 import resources_rc

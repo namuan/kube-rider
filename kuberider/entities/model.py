@@ -58,18 +58,22 @@ class KubePodContainer(object):
     ready: bool
     container_id: str
     restart_count: Optional[int]
+    start_time: str
 
     @classmethod
-    def from_spec(cls, json_spec, json_container_statuses):
+    def from_spec(cls, json_spec, json_container_status):
         container_name = json_spec.get('name', None)
-        container_status = next(cs for cs in json_container_statuses if cs.get('name') == container_name)
-
+        container_status = next(cs
+                                for cs in json_container_status.get('containerStatuses')
+                                if cs.get('name') == container_name
+                                )
         return cls(
             name=json_spec.get('name', None),
             image=json_spec.get('image', None),
             ready=container_status.get('ready', False),
             container_id=container_status.get('containerID', None),
             restart_count=container_status.get('restartCount', None),
+            start_time=json_container_status.get('startTime'),
             volumeMounts={
                 vol.get('name'): vol.get('mountPath')
                 for vol in json_spec.get('volumeMounts', [])
@@ -106,7 +110,7 @@ class KubePodItem(object):
     @property
     def containers(self):
         return [
-            KubePodContainer.from_spec(container_spec, self.status.get('containerStatuses'))
+            KubePodContainer.from_spec(container_spec, self.status)
             for container_spec in self.spec.get('containers', [])
         ]
 

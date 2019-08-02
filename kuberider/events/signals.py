@@ -10,9 +10,11 @@ class AppSignals(QObject):
     command_started = pyqtSignal(str, bool)
     command_finished = pyqtSignal()
     namespaces_loaded = pyqtSignal()
-    namespace_changed = pyqtSignal(str)
+    namespace_changed = pyqtSignal()
     pods_loaded = pyqtSignal(list)
     pod_selected = pyqtSignal(KubePodItem)
+    filter_enabled = pyqtSignal()
+    filter_cleared = pyqtSignal()
 
 
 class AppCommands(QObject):

@@ -15,6 +15,7 @@ class AppState:
     current_context: str = None
     namespaces: List[str] = []
     current_namespace: str = None
+    pods_filter: str = None
 
     @classmethod
     def from_json(cls, json_obj):

@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QMainWindow, QToolBar, qApp
 
 from kuberider.presenters.pod_containers_presenter import PodContainersPresenter
 from kuberider.presenters.pod_list_presenter import PodListPresenter
+from kuberider.presenters.pods_filter_presenter import PodsFilterPresenter
 from kuberider.presenters.watch_presenter import WatchPresenter
 from ..generated.kube_rider_main import Ui_MainWindow
 from ..presenters.console_presenter import ConsolePresenter
@@ -41,6 +42,7 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
         self.console_presenter = ConsolePresenter(self.console_text_edit)
         self.watch_presenter = WatchPresenter(self)
         self.pod_containers_presenter = PodContainersPresenter(self.lst_pod_containers)
+        self.pods_filter_presenter = PodsFilterPresenter(self)
 
         # Custom Dialogs
         self.progress_dialog = ProgressDialog(self)

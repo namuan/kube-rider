@@ -31,24 +31,15 @@
         <enum>QFrame::Raised</enum>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
-        <property name="leftMargin">
-         <number>5</number>
-        </property>
-        <property name="topMargin">
-         <number>5</number>
-        </property>
-        <property name="rightMargin">
-         <number>5</number>
-        </property>
-        <property name="bottomMargin">
-         <number>5</number>
+        <property name="spacing">
+         <number>3</number>
         </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
            <widget class="QCheckBox" name="chk_watch">
             <property name="text">
-             <string>Watch</string>
+             <string>Refresh every </string>
             </property>
            </widget>
           </item>
@@ -67,23 +58,53 @@
            </widget>
           </item>
           <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QPushButton" name="btn_reload_pods">
             <property name="text">
              <string>Reload</string>
             </property>
            </widget>
           </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
-           <widget class="QPushButton" name="btn_update_test">
-            <property name="text">
-             <string>Update</string>
+           <widget class="QLineEdit" name="txt_filter">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="placeholderText">
+             <string>Filter pods ...</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btn_log_test">
+           <widget class="QPushButton" name="btn_enable_filter">
             <property name="text">
-             <string>Log</string>
+             <string>Filter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_clear_filter">
+            <property name="text">
+             <string>Clear</string>
             </property>
            </widget>
           </item>

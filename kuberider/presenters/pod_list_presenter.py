@@ -25,13 +25,15 @@ class PodListPresenter:
         app.commands.reload_pods.connect(self.get_all_pods)
         app.commands.update_pods.connect(self.update_pending_pod)
         app.commands.log_pods.connect(self.log_all_pods)
+        app.data.signals.filter_enabled.connect(self.on_namespace_changed)
+        app.data.signals.filter_cleared.connect(self.on_namespace_changed)
 
     def ui_pod_selected(self):
         pod_item: KubePodItem = self.currently_selected_pod()
         logging.info(f"Selected {pod_item}")
         app.data.signals.pod_selected.emit(pod_item)
 
-    def on_namespace_changed(self, namespace):
+    def on_namespace_changed(self):
         self.view.clear()
         self.get_all_pods()
 
@@ -63,6 +65,10 @@ class PodListPresenter:
         return items[0] if items else None
 
     def add_or_update_pod_item(self, pod_info: KubePodItem):
+        current_filter = app.data.app_state.pods_filter
+        if current_filter and current_filter not in pod_info.name:
+            return
+
         existing_pod_index = self.find_pod_index_by_name(pod_info.name)
 
         if existing_pod_index:

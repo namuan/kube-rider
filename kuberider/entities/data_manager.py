@@ -22,9 +22,9 @@ class DataManager:
 
     def update_command_status(self, command, started=False):
         if started:
-            self.signals.command_started.emit(command)
+            self.signals.command_started.emit(command, True)
         else:
-            self.signals.command_finished.emit(command)
+            self.signals.command_finished.emit()
 
     def update_app_state_in_db(self, app_state_entity: AppState):
         table = self.db[app_state_entity.record_type]

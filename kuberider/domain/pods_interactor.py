@@ -17,3 +17,20 @@ class GetPodsInteractor(Interactor):
         kube_pods: KubePods = KubePods.from_json_str(output)
         app.data.save_pods(kube_pods.items)
 
+    def apply_filter(self, filter):
+        app.data.save_filter(filter)
+        app.data.signals.filter_enabled.emit()
+
+    def clear_filter(self):
+        app.data.save_filter(None)
+        app.data.signals.filter_cleared.emit()
+
+
+class FilterPodsInteractor:
+    def apply_filter(self, filter):
+        app.data.save_filter(filter)
+        app.data.signals.filter_enabled.emit()
+
+    def clear_filter(self):
+        app.data.save_filter(None)
+        app.data.signals.filter_cleared.emit()

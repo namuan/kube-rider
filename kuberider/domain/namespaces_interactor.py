@@ -23,4 +23,4 @@ class NamespacesLoaderInteractor(Interactor):
 class ChangeNamespaceInteractor(Interactor):
     def update_namespace(self, namespace):
         app.data.update_current_namespace(namespace)
-        app.data.signals.namespace_changed.emit(namespace)
+        app.data.signals.namespace_changed.emit()

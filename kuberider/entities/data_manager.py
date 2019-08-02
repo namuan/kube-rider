@@ -4,7 +4,7 @@ from typing import List
 import dataset
 
 from kuberider.entities.model import AppState
-from kuberider.events.signals import AppSignals, AppCommands
+from kuberider.events.signals import AppSignals
 
 
 class DataManager:
@@ -35,6 +35,11 @@ class DataManager:
             ),
             ['name']
         )
+
+    def save_filter(self, filter):
+        logging.info(f"Saving filter {filter} in AppState")
+        self.app_state.pods_filter = filter
+        self.update_app_state_in_db(self.app_state)
 
     def save_contexts(self, contexts):
         logging.info(f"Contexts added: {len(contexts)}")

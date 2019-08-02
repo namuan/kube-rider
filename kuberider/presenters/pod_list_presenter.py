@@ -32,6 +32,7 @@ class PodListPresenter:
         app.data.signals.pod_selected.emit(pod_item)
 
     def on_namespace_changed(self, namespace):
+        self.view.clear()
         self.get_all_pods()
 
     def get_all_pods(self):

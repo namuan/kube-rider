@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PodContainerWidget</class>
- <widget class="QWidget" name="PodContainerWidget">
+ <class>PodVolumeWidget</class>
+ <widget class="QWidget" name="PodVolumeWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>433</width>
+    <width>423</width>
     <height>85</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="lbl_container_name">
+      <widget class="QLabel" name="lbl_volume_name">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -33,22 +33,10 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QLabel" name="lbl_container_started">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="lbl_container_image">
+    <widget class="QLabel" name="lbl_mount_path">
      <property name="font">
       <font>
        <pointsize>10</pointsize>

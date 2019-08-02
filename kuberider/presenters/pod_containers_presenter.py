@@ -18,7 +18,6 @@ class PodContainersPresenter:
     def on_pod_selected(self, pod_info: KubePodItem):
         self.view.clear()
         for container in pod_info.containers:
-            logging.info(f"Show {container.name} in {pod_info.name}")
             pod_container_widget = PodContainerWidget(container, self.view)
             pod_container_widget_item = QtWidgets.QListWidgetItem(self.view)
             pod_container_widget_item.setData(Qt.UserRole, container.name)

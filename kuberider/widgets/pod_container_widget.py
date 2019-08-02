@@ -15,6 +15,7 @@ class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
     def set_data(self, pod_container: KubePodContainer):
         self.pod_container = pod_container
         self.lbl_container_name.setText(pod_container.name)
+        self.lbl_container_started.setText(f"Started at: {pod_container.start_time}")
         self.lbl_container_image.setText(pod_container.image)
         self.lbl_volumes.setText(",".join(pod_container.volumeMounts.keys()))
         self.lbl_volumes.setToolTip(",".join(pod_container.volumeMounts.values()))

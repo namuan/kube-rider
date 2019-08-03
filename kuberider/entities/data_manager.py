@@ -36,6 +36,9 @@ class DataManager:
             ['name']
         )
 
+    def save_partial_output(self, partial_output):
+        self.signals.output_generated.emit(partial_output)
+
     def save_filter(self, filter):
         logging.info(f"Saving filter {filter} in AppState")
         self.app_state.pods_filter = filter

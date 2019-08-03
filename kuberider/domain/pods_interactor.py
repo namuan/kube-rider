@@ -1,5 +1,6 @@
 import logging
 
+from kuberider.core.kube_command_builder import Kcb
 from kuberider.core.worker_pool import TailCommandThread
 from kuberider.domain.interactor import Interactor
 from kuberider.entities.model import KubePods
@@ -42,16 +43,17 @@ class FilterPodsInteractor:
 class PodLogsInteractor:
     def __init__(self):
         self.ct = TailCommandThread()
-        self.ct.signals.success.connect(self.on_success)
-        self.ct.signals.failure.connect(self.on_failure)
+        self.kcb = Kcb.init(self.ct)
+        self.ct.signals.partial_output.connect(self.on_partial_output)
 
-    def on_success(self):
-        pass
-
-    def on_failure(self):
-        pass
+    def on_partial_output(self, output):
+        logging.debug(f"Read: {output}")
+        app.data.save_partial_output(output)
 
     def tail(self, pod_name, container_name):
         logging.info(f"Opening logs for {pod_name} -> {container_name}")
-        # start a thread to read data from tail command
-        pass
+        self.ct.command = 'tail -f $HOME/d.txt'
+        self.kcb.ctx().ns().command("get logs").start()
+
+    def stop_tail(self):
+        self.ct.stop_process()

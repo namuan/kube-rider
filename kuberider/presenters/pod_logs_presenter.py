@@ -1,5 +1,3 @@
-import logging
-
 from kuberider.domain.pods_interactor import PodLogsInteractor
 from kuberider.settings.app_settings import app
 from kuberider.ui.pod_logs_dialog import PodLogsDialog
@@ -16,14 +14,16 @@ class PodLogsPresenter:
 
         # domain event
         app.commands.open_pod_logs.connect(self.on_open_logs_dialog)
+        app.data.signals.output_generated.connect(self.on_output_generated)
 
     def on_open_logs_dialog(self, pod_name, container_name):
         self.pod_logs_dialog.show_dialog()
+        self.pod_logs_dialog.txt_pod_logs.clear()
         self.pods_logs.tail(pod_name, container_name)
 
-        # update the dialog box as we receive more data
-
     def on_close_logs_dialog(self):
+        self.pods_logs.stop_tail()
         self.pod_logs_dialog.hide_dialog()
-        # close the thread
-        # close dialog box
+
+    def on_output_generated(self, output):
+        self.pod_logs_dialog.txt_pod_logs.appendPlainText(output)

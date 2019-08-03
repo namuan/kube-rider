@@ -20,10 +20,12 @@ class WatchPresenter:
         watch_interval_secs = self.view.txt_watch_interval.value()
         if currently_watching:
             logging.info(f"Watching Pods every {watch_interval_secs} secs")
-            self.timer.start(watch_interval_secs * 1000)
+            QTimer.singleShot(watch_interval_secs * 1000, self.on_timer_timeout)
         else:
-            self.timer.stop()
             logging.info(f"Stopped watching Pods")
 
     def on_timer_timeout(self):
-        app.commands.reload_pods.emit()
+        try:
+            app.commands.reload_pods.emit()
+        finally:
+            self.update_timer()

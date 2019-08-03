@@ -56,3 +56,15 @@ class CommandThread(QThread):
             self.signals.failure.emit(result)
         finally:
             self.signals.finished.emit(self._command)
+
+
+class TailCommandThread(QThread):
+    def __init__(self):
+        self.signals = CommandSignals()
+        self._command = None
+        self.console_manager = MockConsoleManager() if is_offline else ConsoleManager()
+        QThread.__init__(self)
+
+    def run(self):
+        # this is the magic will happen
+        pass

@@ -1,15 +1,19 @@
 from PyQt5 import QtWidgets
 
-from ..entities.model import KubePodContainer
+from kuberider.settings.app_settings import app
+from ..entities.model import KubePodContainer, KubePodItem
 from ..generated.pod_container_widget import Ui_PodContainerWidget
 
 
 class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
+    pod_info: KubePodItem
     pod_container: KubePodContainer
 
-    def __init__(self, pod_container: KubePodContainer, parent=None):
+    def __init__(self, pod_info: KubePodItem, pod_container: KubePodContainer, parent=None):
         super(PodContainerWidget, self).__init__(parent)
         self.setupUi(self)
+        self.btn_open_logs.clicked.connect(self.on_open_logs)
+        self.pod_info = pod_info
         self.set_data(pod_container)
 
     def set_data(self, pod_container: KubePodContainer):
@@ -22,3 +26,6 @@ class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
 
     def get_data(self):
         return self.pod_info
+
+    def on_open_logs(self):
+        app.commands.open_pod_logs.emit(self.pod_info.name, self.pod_container.name)

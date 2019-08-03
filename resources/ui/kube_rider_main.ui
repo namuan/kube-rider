@@ -187,6 +187,16 @@
                 </item>
                </layout>
               </widget>
+              <widget class="QWidget" name="tab">
+               <attribute name="title">
+                <string>Events</string>
+               </attribute>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item>
+                 <widget class="QPlainTextEdit" name="txt_pod_events"/>
+                </item>
+               </layout>
+              </widget>
              </widget>
             </item>
            </layout>

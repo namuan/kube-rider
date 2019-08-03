@@ -1,4 +1,5 @@
 import logging
+import subprocess
 import time
 from pathlib import Path
 
@@ -14,6 +15,8 @@ command_file_mapping = {
 
 
 class MockConsoleManager:
+    abort_long_running_command = False
+
     def __init__(self):
         self.mock_responses_dir = Path(".").joinpath("mock_responses")
 
@@ -25,3 +28,14 @@ class MockConsoleManager:
             return self.mock_responses_dir.joinpath(mock_repsonse).read_text()
         else:
             raise LookupError(f"No Mock found for command: {command}")
+
+    def run_long_running_command(self, command):
+        p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+
+        while not self.abort_long_running_command:
+            ret_code = p.poll()
+            line = p.stdout.readline()
+            yield line
+            time.sleep(1)
+            if ret_code is not None or ret_code is not 0:
+                break

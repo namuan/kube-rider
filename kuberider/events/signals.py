@@ -15,6 +15,7 @@ class AppSignals(QObject):
     pod_selected = pyqtSignal(KubePodItem)
     filter_enabled = pyqtSignal()
     filter_cleared = pyqtSignal()
+    output_generated = pyqtSignal(str)
 
 
 class AppCommands(QObject):

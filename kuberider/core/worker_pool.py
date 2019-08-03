@@ -15,6 +15,7 @@ class CommandSignals(QObject):
     finished = pyqtSignal(str)
     success = pyqtSignal(dict)
     failure = pyqtSignal(dict)
+    partial_output = pyqtSignal(str)
 
 
 class CommandThread(QThread):
@@ -37,11 +38,11 @@ class CommandThread(QThread):
             logging.warning("No Commands to run")
             return
         try:
-            app.data.save_command(self._command)
-            self.signals.started.emit(self._command)
-            output = self.console_manager.run_command(self._command)
+            app.data.save_command(self.command)
+            self.signals.started.emit(self.command)
+            output = self.console_manager.run_command(self.command)
             result = {
-                'command': self._command,
+                'command': self.command,
                 'status': True,
                 'output': output
             }
@@ -49,13 +50,13 @@ class CommandThread(QThread):
         except Exception as e:
             logging.error(e)
             result = {
-                'command': self._command,
+                'command': self.command,
                 'status': False,
                 'output': e
             }
             self.signals.failure.emit(result)
         finally:
-            self.signals.finished.emit(self._command)
+            self.signals.finished.emit(self.command)
 
 
 class TailCommandThread(QThread):
@@ -65,6 +66,21 @@ class TailCommandThread(QThread):
         self.console_manager = MockConsoleManager() if is_offline else ConsoleManager()
         QThread.__init__(self)
 
+    @property
+    def command(self):
+        return self._command
+
+    @command.setter
+    def command(self, value):
+        self._command = value
+
     def run(self):
-        # this is the magic will happen
-        pass
+        logging.info(f"Running Tail Command Thread")
+        self.console_manager.abort_long_running_command = False
+        app.data.save_command(self.command)
+        self.signals.started.emit(self.command)
+        for line in self.console_manager.run_long_running_command(self.command):
+            self.signals.partial_output.emit(line.strip().decode('utf-8'))
+
+    def stop_process(self):
+        self.console_manager.abort_long_running_command = True

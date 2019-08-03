@@ -103,6 +103,14 @@ class Ui_MainWindow(object):
         self.lst_pod_containers.setObjectName("lst_pod_containers")
         self.horizontalLayout_6.addWidget(self.lst_pod_containers)
         self.tabWidget.addTab(self.tab_3, "")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.tab)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.txt_pod_events = QtWidgets.QPlainTextEdit(self.tab)
+        self.txt_pod_events.setObjectName("txt_pod_events")
+        self.horizontalLayout_8.addWidget(self.txt_pod_events)
+        self.tabWidget.addTab(self.tab, "")
         self.horizontalLayout_2.addWidget(self.tabWidget)
         self.frame_4 = QtWidgets.QFrame(self.splitter_2)
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -133,6 +141,7 @@ class Ui_MainWindow(object):
         self.btn_enable_filter.setText(_translate("MainWindow", "Filter"))
         self.btn_clear_filter.setText(_translate("MainWindow", "Clear"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Containers"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Events"))
 
 
 import resources_rc

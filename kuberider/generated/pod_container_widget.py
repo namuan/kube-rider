@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_PodContainerWidget(object):
     def setupUi(self, PodContainerWidget):
         PodContainerWidget.setObjectName("PodContainerWidget")
-        PodContainerWidget.resize(433, 85)
+        PodContainerWidget.resize(433, 92)
         PodContainerWidget.setStyleSheet("")
         self.verticalLayout = QtWidgets.QVBoxLayout(PodContainerWidget)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -32,6 +32,11 @@ class Ui_PodContainerWidget(object):
         self.lbl_container_started.setFont(font)
         self.lbl_container_started.setObjectName("lbl_container_started")
         self.horizontalLayout_2.addWidget(self.lbl_container_started)
+        self.btn_open_logs = QtWidgets.QToolButton(PodContainerWidget)
+        self.btn_open_logs.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
+        self.btn_open_logs.setAutoRaise(True)
+        self.btn_open_logs.setObjectName("btn_open_logs")
+        self.horizontalLayout_2.addWidget(self.btn_open_logs)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.lbl_container_image = QtWidgets.QLabel(PodContainerWidget)
         font = QtGui.QFont()
@@ -68,6 +73,7 @@ class Ui_PodContainerWidget(object):
         PodContainerWidget.setWindowTitle(_translate("PodContainerWidget", "Form"))
         self.lbl_container_name.setText(_translate("PodContainerWidget", "TextLabel"))
         self.lbl_container_started.setText(_translate("PodContainerWidget", "TextLabel"))
+        self.btn_open_logs.setText(_translate("PodContainerWidget", "Logs"))
         self.lbl_container_image.setText(_translate("PodContainerWidget", "image path"))
         self.label_2.setText(_translate("PodContainerWidget", "Volumes:"))
         self.lbl_volumes.setText(_translate("PodContainerWidget", "TextLabel"))

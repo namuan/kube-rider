@@ -1,3 +1,6 @@
+import logging
+
+from kuberider.core.worker_pool import TailCommandThread
 from kuberider.domain.interactor import Interactor
 from kuberider.entities.model import KubePods
 from kuberider.settings.app_settings import app
@@ -34,3 +37,21 @@ class FilterPodsInteractor:
     def clear_filter(self):
         app.data.save_filter(None)
         app.data.signals.filter_cleared.emit()
+
+
+class PodLogsInteractor:
+    def __init__(self):
+        self.ct = TailCommandThread()
+        self.ct.signals.success.connect(self.on_success)
+        self.ct.signals.failure.connect(self.on_failure)
+
+    def on_success(self):
+        pass
+
+    def on_failure(self):
+        pass
+
+    def tail(self, pod_name, container_name):
+        logging.info(f"Opening logs for {pod_name} -> {container_name}")
+        # start a thread to read data from tail command
+        pass

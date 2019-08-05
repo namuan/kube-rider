@@ -50,10 +50,12 @@ class PodLogsInteractor:
         logging.debug(f"Read: {output}")
         app.data.save_partial_output(output)
 
-    def tail(self, pod_name, container_name):
+    def tail(self, pod_name, container_name, follow=False):
         logging.info(f"Opening logs for {pod_name} -> {container_name}")
-        self.ct.command = 'tail -f $HOME/d.txt'
-        self.kcb.ctx().ns().command("get logs").start()
+        command = f'logs {pod_name} -c {container_name}'
+        if follow:
+            command += " -f"
+        self.kcb.ctx().ns().command(command).start()
 
     def stop_tail(self):
         self.ct.stop_process()

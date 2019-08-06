@@ -78,3 +78,6 @@ class DataManager:
 
     def save_pods(self, pods):
         self.signals.pods_loaded.emit(pods)
+
+    def save_pod_events(self, pod_events: List):
+        self.signals.pod_events_loaded.emit(pod_events)

@@ -1,0 +1,178 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "count": 1,
+      "eventTime": null,
+      "firstTimestamp": "2019-08-04T20:12:45Z",
+      "involvedObject": {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs",
+        "namespace": "default",
+        "resourceVersion": "2404",
+        "uid": "ea509c58-6fdf-49d7-a7b1-fd78ebc3c9bb"
+      },
+      "kind": "Event",
+      "lastTimestamp": "2019-08-04T20:12:45Z",
+      "message": "Successfully assigned default/k8s-bootcamp-59b5b9478-n5nzs to minikube",
+      "metadata": {
+        "creationTimestamp": "2019-08-04T20:12:45Z",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs.15b7d15692726a24",
+        "namespace": "default",
+        "resourceVersion": "2409",
+        "selfLink": "/api/v1/namespaces/default/events/k8s-bootcamp-59b5b9478-n5nzs.15b7d15692726a24",
+        "uid": "48be6016-c677-4f2f-89c3-bbf9aac2d192"
+      },
+      "reason": "Scheduled",
+      "reportingComponent": "",
+      "reportingInstance": "",
+      "source": {
+        "component": "default-scheduler"
+      },
+      "type": "Normal"
+    },
+    {
+      "apiVersion": "v1",
+      "count": 1,
+      "eventTime": null,
+      "firstTimestamp": "2019-08-04T20:12:46Z",
+      "involvedObject": {
+        "apiVersion": "v1",
+        "fieldPath": "spec.containers{k8s-bootcamp}",
+        "kind": "Pod",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs",
+        "namespace": "default",
+        "resourceVersion": "2405",
+        "uid": "ea509c58-6fdf-49d7-a7b1-fd78ebc3c9bb"
+      },
+      "kind": "Event",
+      "lastTimestamp": "2019-08-04T20:12:46Z",
+      "message": "Pulling image \"gcr.io/google-samples/kubernetes-bootcamp:v1\"",
+      "metadata": {
+        "creationTimestamp": "2019-08-04T20:12:46Z",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs.15b7d156bf7bc3f1",
+        "namespace": "default",
+        "resourceVersion": "2415",
+        "selfLink": "/api/v1/namespaces/default/events/k8s-bootcamp-59b5b9478-n5nzs.15b7d156bf7bc3f1",
+        "uid": "c94532fe-28cf-471c-8d85-1074b5398daa"
+      },
+      "reason": "Pulling",
+      "reportingComponent": "",
+      "reportingInstance": "",
+      "source": {
+        "component": "kubelet",
+        "host": "minikube"
+      },
+      "type": "Normal"
+    },
+    {
+      "apiVersion": "v1",
+      "count": 1,
+      "eventTime": null,
+      "firstTimestamp": "2019-08-04T20:13:05Z",
+      "involvedObject": {
+        "apiVersion": "v1",
+        "fieldPath": "spec.containers{k8s-bootcamp}",
+        "kind": "Pod",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs",
+        "namespace": "default",
+        "resourceVersion": "2405",
+        "uid": "ea509c58-6fdf-49d7-a7b1-fd78ebc3c9bb"
+      },
+      "kind": "Event",
+      "lastTimestamp": "2019-08-04T20:13:05Z",
+      "message": "Successfully pulled image \"gcr.io/google-samples/kubernetes-bootcamp:v1\"",
+      "metadata": {
+        "creationTimestamp": "2019-08-04T20:13:05Z",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs.15b7d15b431098fc",
+        "namespace": "default",
+        "resourceVersion": "2438",
+        "selfLink": "/api/v1/namespaces/default/events/k8s-bootcamp-59b5b9478-n5nzs.15b7d15b431098fc",
+        "uid": "a178097d-8614-4837-a43a-0b9a68266c3f"
+      },
+      "reason": "Pulled",
+      "reportingComponent": "",
+      "reportingInstance": "",
+      "source": {
+        "component": "kubelet",
+        "host": "minikube"
+      },
+      "type": "Normal"
+    },
+    {
+      "apiVersion": "v1",
+      "count": 1,
+      "eventTime": null,
+      "firstTimestamp": "2019-08-04T20:13:05Z",
+      "involvedObject": {
+        "apiVersion": "v1",
+        "fieldPath": "spec.containers{k8s-bootcamp}",
+        "kind": "Pod",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs",
+        "namespace": "default",
+        "resourceVersion": "2405",
+        "uid": "ea509c58-6fdf-49d7-a7b1-fd78ebc3c9bb"
+      },
+      "kind": "Event",
+      "lastTimestamp": "2019-08-04T20:13:05Z",
+      "message": "Created container k8s-bootcamp",
+      "metadata": {
+        "creationTimestamp": "2019-08-04T20:13:05Z",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs.15b7d15b55226cef",
+        "namespace": "default",
+        "resourceVersion": "2440",
+        "selfLink": "/api/v1/namespaces/default/events/k8s-bootcamp-59b5b9478-n5nzs.15b7d15b55226cef",
+        "uid": "989df962-3efc-4ef9-903e-e46310cad786"
+      },
+      "reason": "Created",
+      "reportingComponent": "",
+      "reportingInstance": "",
+      "source": {
+        "component": "kubelet",
+        "host": "minikube"
+      },
+      "type": "Normal"
+    },
+    {
+      "apiVersion": "v1",
+      "count": 1,
+      "eventTime": null,
+      "firstTimestamp": "2019-08-04T20:13:05Z",
+      "involvedObject": {
+        "apiVersion": "v1",
+        "fieldPath": "spec.containers{k8s-bootcamp}",
+        "kind": "Pod",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs",
+        "namespace": "default",
+        "resourceVersion": "2405",
+        "uid": "ea509c58-6fdf-49d7-a7b1-fd78ebc3c9bb"
+      },
+      "kind": "Event",
+      "lastTimestamp": "2019-08-04T20:13:05Z",
+      "message": "Started container k8s-bootcamp",
+      "metadata": {
+        "creationTimestamp": "2019-08-04T20:13:05Z",
+        "name": "k8s-bootcamp-59b5b9478-n5nzs.15b7d15b5eb8cd6e",
+        "namespace": "default",
+        "resourceVersion": "2441",
+        "selfLink": "/api/v1/namespaces/default/events/k8s-bootcamp-59b5b9478-n5nzs.15b7d15b5eb8cd6e",
+        "uid": "ad668e29-ddba-44ba-8893-494eb593e069"
+      },
+      "reason": "Started",
+      "reportingComponent": "",
+      "reportingInstance": "",
+      "source": {
+        "component": "kubelet",
+        "host": "minikube"
+      },
+      "type": "Normal"
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": "",
+    "selfLink": ""
+  }
+}

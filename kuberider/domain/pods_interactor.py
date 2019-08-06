@@ -3,7 +3,7 @@ import logging
 from kuberider.core.kube_command_builder import Kcb
 from kuberider.core.worker_pool import TailCommandThread
 from kuberider.domain.interactor import Interactor
-from kuberider.entities.model import KubePods
+from kuberider.entities.model import KubePods, KubePodEvents
 from kuberider.settings.app_settings import app
 
 
@@ -59,3 +59,19 @@ class PodLogsInteractor:
 
     def stop_tail(self):
         self.ct.stop_process()
+
+
+class GetPodEventsInteractor(Interactor):
+    def __init__(self):
+        super().__init__(on_success=self.on_result, on_failure=self.on_result)
+
+    def run(self, pod_name):
+        app.data.signals.command_started.emit("Getting pod events", False)
+        event_query = f"--field-selector='involvedObject.name={pod_name}'"
+        self.kcb.ctx().ns().command(f"get event {event_query} -o json").start()
+
+    def on_result(self, result):
+        app.data.signals.command_finished.emit()
+        output = result['output']
+        kube_pod_events = KubePodEvents.from_json_str(output)
+        app.data.save_pod_events(kube_pod_events.items)

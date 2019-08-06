@@ -6,6 +6,7 @@ from PyQt5.QtGui import QDesktopServices, QCloseEvent, QIcon
 from PyQt5.QtWidgets import QMainWindow, QToolBar, qApp
 
 from kuberider.presenters.pod_containers_presenter import PodContainersPresenter
+from kuberider.presenters.pod_events_presenter import PodEventsPresenter
 from kuberider.presenters.pod_list_presenter import PodListPresenter
 from kuberider.presenters.pod_logs_presenter import PodLogsPresenter
 from kuberider.presenters.pods_filter_presenter import PodsFilterPresenter
@@ -43,6 +44,7 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
         self.console_presenter = ConsolePresenter(self.console_text_edit)
         self.watch_presenter = WatchPresenter(self)
         self.pod_containers_presenter = PodContainersPresenter(self.lst_pod_containers)
+        self.pod_events_presenter = PodEventsPresenter(self.txt_pod_events)
         self.pods_filter_presenter = PodsFilterPresenter(self)
         self.pod_logs_presenter = PodLogsPresenter(self)
 

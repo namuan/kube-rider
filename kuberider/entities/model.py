@@ -121,6 +121,18 @@ class KubePodItem(object):
 
 
 @attr.s(auto_attribs=True)
+class KubePodEvents(object):
+    apiVersion: str
+    kind: Any
+    metadata: Any
+    items: List[Dict]
+
+    @classmethod
+    def from_json_str(cls, json_str):
+        return cattr.structure(json.loads(json_str), cls)
+
+
+@attr.s(auto_attribs=True)
 class KubePods(object):
     apiVersion: str
     items: List[KubePodItem]

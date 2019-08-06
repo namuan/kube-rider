@@ -18,7 +18,7 @@ class CommandSignals(QObject):
     partial_output = pyqtSignal(str)
 
 
-class CommandThread(QThread):
+class BaseCommand(QThread):
     def __init__(self):
         self.signals = CommandSignals()
         self._command = None
@@ -32,6 +32,14 @@ class CommandThread(QThread):
     @command.setter
     def command(self, value):
         self._command = value
+
+    def run(self) -> None:
+        raise SyntaxError("Implement run")
+
+
+class CommandThread(BaseCommand):
+    def __init__(self):
+        super().__init__()
 
     def run(self):
         if not self._command:
@@ -59,23 +67,11 @@ class CommandThread(QThread):
             self.signals.finished.emit(self.command)
 
 
-class TailCommandThread(QThread):
+class TailCommandThread(BaseCommand):
     def __init__(self):
-        self.signals = CommandSignals()
-        self._command = None
-        self.console_manager = MockConsoleManager() if is_offline else ConsoleManager()
-        QThread.__init__(self)
-
-    @property
-    def command(self):
-        return self._command
-
-    @command.setter
-    def command(self, value):
-        self._command = value
+        super().__init__()
 
     def run(self):
-        logging.info(f"Running Tail Command Thread")
         self.console_manager.abort_long_running_command = False
         app.data.save_command(self.command)
         self.signals.started.emit(self.command)

@@ -52,3 +52,7 @@ class Kcb(QObject):
     def start(self):
         self.command_thread.command = self.complete_command()
         self.command_thread.start()
+
+    def start_command(self, command):
+        self.command_thread.command = command
+        self.command_thread.start()

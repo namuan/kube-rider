@@ -1,19 +1,16 @@
-import logging
+from kuberider.core.kube_command_builder import Kcb
+from kuberider.core.worker_pool import ExternalAppCommandThread
+from kuberider.settings.app_settings import app
 
-from kuberider.domain.interactor import Interactor
 
-
-class ExecShellInteractor(Interactor):
+class ExecShellInteractor:
     def __init__(self):
-        super().__init__(on_success=None, on_failure=None)
+        self.ct = ExternalAppCommandThread()
+        self.kcb = Kcb.init(self.ct)
 
     def run(self, pod_name, container_name, shell_cmd):
         cmd = self.kcb.ctx().ns().command(
             f"exec {pod_name} -c {container_name} {shell_cmd}"
         ).complete_command()
-        # Convert cmd to OS specific command to run in an external app
-        # Then set the command on self.kcb
-        # And start
-        self.kcb.command("hello World")
-        self.kcb.start()
-        logging.info(f"External App: {cmd}")
+        app.data.save_command(cmd)
+        self.kcb.start_command(cmd)

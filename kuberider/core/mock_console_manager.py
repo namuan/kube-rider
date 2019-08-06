@@ -11,7 +11,8 @@ command_file_mapping = {
     "kubectl --context test get namespaces -o json": "k_get_test_namespaces.json",
     "kubectl --context qa --namespace default get pods -o json": "k_get_qa_multiple_pods.json",
     "kubectl --context qa --namespace kube-public get pods -o json": "k_get_qa_single_pod.json",
-    "kubectl --context qa --namespace default get event --field-selector='involvedObject.name=hello-node-2-7c99ff6cd7-gtpxr' -o json": "k_get_pod_events.json"
+    "kubectl --context qa --namespace default get event --field-selector='involvedObject.name=hello-node-2-7c99ff6cd7-gtpxr' -o json": "k_get_pod_events.json",
+    "kubectl --context qa --namespace default exec hello-node-2-7c99ff6cd7-gtpxr -c hello-node-1 sql": "k_exec_shell.txt"
 }
 
 

@@ -13,5 +13,6 @@ class ContainerExecPresenter:
         app.commands.on_exec_shell.connect(self.on_exec_shell)
 
     def on_exec_shell(self, pod_name, container_name):
-        cmd, ret = QInputDialog.getText(self.parent, "Enter command to run in the pod", "Command", QLineEdit.Normal)
-        self.exec_shell.run(pod_name, container_name, cmd)
+        cmd, ret = QInputDialog.getText(self.parent, "Enter command to run in the container", "Command", QLineEdit.Normal)
+        if ret and cmd:
+            self.exec_shell.run(pod_name, container_name, cmd)

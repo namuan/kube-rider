@@ -3,6 +3,8 @@ import subprocess
 import time
 from pathlib import Path
 
+from kuberider.core.terminal import Terminal
+
 command_file_mapping = {
     "kubectl config get-contexts --output='name'": "k_get_contexts.txt",
     "kubectl config current-context": "k_get_current_context.txt",
@@ -21,6 +23,7 @@ class MockConsoleManager:
 
     def __init__(self):
         self.mock_responses_dir = Path(".").joinpath("mock_responses")
+        self.terminal = Terminal()
 
     def run_command(self, command):
         logging.debug(f"Running command: {command}")
@@ -41,3 +44,6 @@ class MockConsoleManager:
             time.sleep(1)
             if ret_code is not None or ret_code is not 0:
                 break
+
+    def run_osx_terminal(self, command):
+        return self.terminal.open_terminal(script=command)

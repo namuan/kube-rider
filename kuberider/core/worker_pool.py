@@ -80,3 +80,11 @@ class TailCommandThread(BaseCommand):
 
     def stop_process(self):
         self.console_manager.abort_long_running_command = True
+
+
+class ExternalAppCommandThread(BaseCommand):
+    def __init__(self):
+        super().__init__()
+
+    def run(self):
+        self.console_manager.run_osx_terminal(self.command)

@@ -40,25 +40,36 @@ class FilterPodsInteractor:
         app.data.signals.filter_cleared.emit()
 
 
-class PodLogsInteractor:
+class PodLogsInteractor(Interactor):
     def __init__(self):
-        self.ct = TailCommandThread()
-        self.kcb = Kcb.init(self.ct)
+        super().__init__(on_success=self.on_full_logs, on_failure=self.on_full_logs)
+        self.tct = TailCommandThread()
         self.ct.signals.partial_output.connect(self.on_partial_output)
 
     def on_partial_output(self, output):
         logging.debug(f"Read: {output}")
         app.data.save_partial_output(output)
 
-    def tail(self, pod_name, container_name, follow=False):
-        logging.info(f"Opening logs for {pod_name} -> {container_name}")
+    def on_full_logs(self, result):
+        app.data.signals.command_finished.emit()
+        output = result['output']
+        app.data.save_partial_output(output)
+
+    def fetch_all(self, pod_name, container_name):
+        app.data.signals.command_started.emit("Getting all logs", False)
+        self.kcb = Kcb.init(self.ct)
+        logging.info(f"Fetching all logs for {pod_name} -> {container_name}")
         command = f'logs {pod_name} -c {container_name}'
-        if follow:
-            command += " -f"
+        self.kcb.ctx().ns().command(command).start()
+
+    def tail(self, pod_name, container_name):
+        self.kcb = Kcb.init(self.tct)
+        logging.info(f"Following logs for {pod_name} -> {container_name}")
+        command = f'logs {pod_name} -c {container_name} -f'
         self.kcb.ctx().ns().command(command).start()
 
     def stop_tail(self):
-        self.ct.stop_process()
+        self.tct.stop_process()
 
 
 class GetPodEventsInteractor(Interactor):

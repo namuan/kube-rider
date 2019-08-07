@@ -48,4 +48,7 @@ class PodLogsPresenter:
     def start_tailing(self):
         follow_logs = self.pod_logs_dialog.chk_follow_logs.isChecked()
         self.pod_logs_dialog.txt_pod_logs.clear()
-        self.pods_logs.tail(self.pod_name, self.container_name, follow=follow_logs)
+        if follow_logs:
+            self.pods_logs.tail(self.pod_name, self.container_name)
+        else:
+            self.pods_logs.fetch_all(self.pod_name, self.container_name)

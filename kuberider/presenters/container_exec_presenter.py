@@ -11,8 +11,15 @@ class ContainerExecPresenter:
 
         # commands
         app.commands.on_exec_shell.connect(self.on_exec_shell)
+        app.commands.on_port_forward.connect(self.on_port_forward)
 
     def on_exec_shell(self, pod_name, container_name):
-        cmd, ret = QInputDialog.getText(self.parent, "Enter command to run in the container", "Command", QLineEdit.Normal)
+        cmd, ret = QInputDialog.getText(self.parent, "Execute command", "Command",
+                                        QLineEdit.Normal)
         if ret and cmd:
             self.exec_shell.run(pod_name, container_name, cmd)
+
+    def on_port_forward(self, pod_name, container_name):
+        cmd, ret = QInputDialog.getText(self.parent, "Port forwarding", "Enter Ports (Local:Remote)", QLineEdit.Normal)
+        if ret and cmd:
+            self.exec_shell.port_forward(pod_name, container_name, cmd)

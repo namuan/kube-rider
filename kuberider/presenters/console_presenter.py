@@ -7,4 +7,4 @@ class ConsolePresenter:
         app.data.signals.command_added.connect(self.on_command_added)
 
     def on_command_added(self, new_command):
-        self.console_text_edit.appendPlainText(new_command)
+        self.console_text_edit.appendPlainText(new_command.replace(" -o json", ""))

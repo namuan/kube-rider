@@ -1,8 +1,15 @@
 import json
+import warnings
+from pathlib import Path
 from typing import List, Dict, Any, Optional
 
+import arrow
 import attr
 import cattr
+from arrow.factory import ArrowParseWarning
+from toolz import itertoolz
+
+warnings.simplefilter("ignore", ArrowParseWarning)
 
 APP_STATE_RECORD_TYPE = "app_state"
 
@@ -59,7 +66,22 @@ class KubePodContainer(object):
     ready: bool
     container_id: str
     restart_count: Optional[int]
-    start_time: str
+    state: str
+    state_details: str
+
+    @staticmethod
+    def extract_container_state(state_json):
+        if not state_json:
+            return "N/A"
+
+        current_state = itertoolz.first(state_json)
+        current_state_details = state_json.get(current_state)
+        state_at = itertoolz.first(current_state_details)
+        state_at_details = current_state_details.get(state_at)
+        if state_at == "startedAt":
+            state_at_details = arrow.get(state_at_details).humanize()
+
+        return current_state, f"{current_state.strip()} ({state_at.strip()}: {state_at_details.strip()})"
 
     @classmethod
     def from_spec(cls, json_spec, json_container_status):
@@ -68,17 +90,20 @@ class KubePodContainer(object):
                                 for cs in json_container_status.get('containerStatuses')
                                 if cs.get('name') == container_name
                                 )
+        state, details = cls.extract_container_state(container_status.get('state'))
+
         return cls(
             name=json_spec.get('name', None),
             image=json_spec.get('image', None),
             ready=container_status.get('ready', False),
             container_id=container_status.get('containerID', None),
             restart_count=container_status.get('restartCount', None),
-            start_time=json_container_status.get('startTime'),
             volumeMounts={
                 vol.get('name'): vol.get('mountPath')
                 for vol in json_spec.get('volumeMounts', [])
-            }
+            },
+            state=state,
+            state_details=details
         )
 
 
@@ -143,6 +168,11 @@ class KubePods(object):
     def from_json_str(cls, json_str):
         return cattr.structure(json.loads(json_str), cls)
 
+
 # if __name__ == '__main__':
-#     mock_file = Path("..").joinpath("mock_responses").joinpath("k_get_qa_multiple_pods.json").read_text(encoding='utf-8')
+#     mock_file = Path("..").joinpath("mock_responses").joinpath("k_get_qa_multiple_pods.json").read_text(
+#         encoding='utf-8')
 #     pods = KubePods.from_json_str(mock_file)
+#     for p in pods.items:
+#         for c in p.containers:
+#             print(c.name, c.state)

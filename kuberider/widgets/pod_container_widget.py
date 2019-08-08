@@ -1,8 +1,8 @@
 from PyQt5 import QtWidgets
 
-from ..settings.app_settings import app
 from ..entities.model import KubePodContainer, KubePodItem
 from ..generated.pod_container_widget import Ui_PodContainerWidget
+from ..settings.app_settings import app
 
 
 class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
@@ -14,6 +14,7 @@ class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
         self.setupUi(self)
         self.btn_open_logs.clicked.connect(self.on_open_logs)
         self.btn_exec_shell.clicked.connect(self.on_exec_shell)
+        self.btn_port_forward.clicked.connect(self.on_port_forward)
         self.pod_info = pod_info
         self.set_data(pod_container)
 
@@ -34,3 +35,6 @@ class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
 
     def on_exec_shell(self):
         app.commands.on_exec_shell.emit(self.pod_info.name, self.pod_container.name)
+
+    def on_port_forward(self):
+        app.commands.on_port_forward.emit(self.pod_info.name, self.pod_container.name)

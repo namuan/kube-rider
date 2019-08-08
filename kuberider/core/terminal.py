@@ -1,3 +1,4 @@
+import logging
 import os
 import subprocess
 import sys
@@ -90,6 +91,8 @@ class configure(object):
         text = p.stdout.read().decode('utf-8')
         p.stdout.close()
         code = p.wait()
+        logging.debug(f"Running command : {script}")
+        logging.debug(f"Ret code: {code} - Ret text: {text}")
         return code, text
 
     def darwin_open_terminal(self, command):
@@ -98,7 +101,7 @@ class configure(object):
         osascript.append('  if it is running then')
         osascript.append('     do script "%s; exit"' % command)
         osascript.append('  else')
-        osascript.append('     do script "%s; exit" in window 1' % command)
+        osascript.append('     do script "%s" in window 1' % command)
         osascript.append('  end if')
         osascript.append('  activate')
         osascript.append('end tell')

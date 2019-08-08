@@ -58,6 +58,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="btn_port_forward">
+       <property name="text">
+        <string>Port Fwd</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QToolButton" name="btn_exec_shell">
        <property name="text">
         <string>Exec</string>

@@ -1,6 +1,5 @@
 import json
 import warnings
-from pathlib import Path
 from typing import List, Dict, Any, Optional
 
 import arrow
@@ -120,6 +119,11 @@ class KubePodItem(object):
         return self.metadata.get('name')
 
     @property
+    def pod_state(self):
+        ready, total = self.count
+        return "running" if ready == total else "waiting"
+
+    @property
     def count(self):
         total = len([c for c in self.status.get('containerStatuses', [])])
         ready = len([
@@ -127,7 +131,7 @@ class KubePodItem(object):
             for c in self.status.get('containerStatuses', [])
             if c.get('ready')
         ])
-        return f"{ready}/{total}"
+        return ready, total
 
     @property
     def pod_status(self):
@@ -167,7 +171,6 @@ class KubePods(object):
     @classmethod
     def from_json_str(cls, json_str):
         return cattr.structure(json.loads(json_str), cls)
-
 
 # if __name__ == '__main__':
 #     mock_file = Path("..").joinpath("mock_responses").joinpath("k_get_qa_multiple_pods.json").read_text(

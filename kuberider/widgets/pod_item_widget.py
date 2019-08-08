@@ -15,7 +15,8 @@ class PodItemWidget(QtWidgets.QWidget, Ui_PodItemWidget):
     def set_data(self, pod_info: KubePodItem):
         self.pod_info = pod_info
         self.lbl_pod_name.setText(pod_info.name)
-        self.lbl_pod_count.setText(pod_info.count)
+        self.lbl_pod_count.setAccessibleName(pod_info.pod_state)
+        self.lbl_pod_count.setText("{0}/{1}".format(*pod_info.count))
         self.lbl_pod_status.setText(pod_info.pod_status)
 
     def get_data(self):

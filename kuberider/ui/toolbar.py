@@ -31,9 +31,10 @@ def toolbar_items(self):
     toolbar_ns_list = QComboBox(self)
     toolbar_ns_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
     toolbar_ns_list.setDuplicatesEnabled(False)
-    toolbar_ns_list.currentTextChanged.connect(
+    toolbar_ns_list.currentIndexChanged[str].connect(
         lambda new_ns: self.toolbar_presenter.on_current_namespace_changed(new_ns)
     )
+    toolbar_ns_list.setEditable(True)
     toolbar_ns_list_action = QWidgetAction(self)
     toolbar_ns_list_action.setText("Namespaces")
     toolbar_ns_list_action.setDefaultWidget(toolbar_ns_list)

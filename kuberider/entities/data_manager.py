@@ -22,7 +22,7 @@ class DataManager:
 
     def update_command_status(self, command, started=False):
         if started:
-            self.signals.command_started.emit(command, True)
+            self.signals.command_started.emit(command, False)
         else:
             self.signals.command_finished.emit()
 

@@ -13,6 +13,10 @@ def toolbar_items(self):
     toolbar_configure_action.triggered.connect(self.configuration_dialog.show_dialog)
     self.toolbar.addAction(toolbar_configure_action)
 
+    toolbar_add_resource_action = QAction(QIcon(":/images/plus-48.png"), 'Add Resource', self)
+    toolbar_add_resource_action.triggered.connect(self.kube_resource_presenter.show_dialog)
+    self.toolbar.addAction(toolbar_add_resource_action)
+
     self.toolbar.addSeparator()
 
     toolbar_ctx_list = QComboBox(self)

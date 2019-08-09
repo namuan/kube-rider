@@ -5,6 +5,7 @@ import traceback
 from PyQt5.QtGui import QDesktopServices, QCloseEvent, QIcon
 from PyQt5.QtWidgets import QMainWindow, QToolBar, qApp
 
+from kuberider.presenters.kube_resource_presenter import KubeResourcePresenter
 from ..presenters.container_exec_presenter import ContainerExecPresenter
 from ..presenters.pod_containers_presenter import PodContainersPresenter
 from ..presenters.pod_events_presenter import PodEventsPresenter
@@ -49,6 +50,7 @@ class KubeRiderMainWindow(QMainWindow, Ui_MainWindow):
         self.pods_filter_presenter = PodsFilterPresenter(self)
         self.pod_logs_presenter = PodLogsPresenter(self)
         self.container_exec_presenter = ContainerExecPresenter(self)
+        self.kube_resource_presenter = KubeResourcePresenter(self)
 
         # Custom Dialogs
         self.progress_dialog = ProgressDialog(self)

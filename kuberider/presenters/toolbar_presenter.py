@@ -17,7 +17,7 @@ class ToolbarPresenter:
 
         # events
         app.data.signals.contexts_loaded.connect(self.on_contexts_loaded)
-        app.data.signals.context_changed.connect(self.on_context_changed)
+        app.data.signals.context_changed.connect(self.on_current_context_changed)
         app.data.signals.namespaces_loaded.connect(self.on_namespaces_loaded)
 
     def __get_combox_box(self, action_name):
@@ -36,10 +36,6 @@ class ToolbarPresenter:
         if namespaces:
             self.on_current_namespace_changed(namespaces[0])
 
-    def on_context_changed(self, context_name):
-        contexts_ui = self.__get_combox_box("Contexts")
-        contexts_ui.setCurrentText(context_name)
-
     def on_contexts_loaded(self):
         contexts_ui = self.__get_combox_box("Contexts")
         contexts_ui.clear()
@@ -47,8 +43,8 @@ class ToolbarPresenter:
         for ctx in contexts:
             contexts_ui.addItem(ctx)
 
-        self.current_context.current_context()
         self.contexts_loaded = True
+        self.current_context.current_context()
 
     def on_current_context_changed(self, new_context_name):
         if self.contexts_loaded:

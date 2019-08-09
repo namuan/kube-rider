@@ -1,9 +1,12 @@
 import subprocess
 import time
 
+from kuberider.core.terminal import Terminal
+
 
 class ConsoleManager:
     abort_long_running_command = False
+    terminal = Terminal()
 
     def run_command(self, command):
         return subprocess.check_output(
@@ -25,3 +28,6 @@ class ConsoleManager:
             line = p.stdout.readline()
             yield line
             time.sleep(1)
+
+    def run_osx_terminal(self, command):
+        return self.terminal.open_terminal(script=command)

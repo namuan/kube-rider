@@ -28,7 +28,7 @@ class CurrentContextInteractor(Interactor):
         self.kcb.command("config current-context").start()
 
     def on_result(self, result):
-        output = result['output']
+        output = result['output'].strip()
         app.data.update_current_context(output)
         app.data.signals.context_changed.emit(output)
 

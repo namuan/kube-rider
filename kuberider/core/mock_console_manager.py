@@ -42,7 +42,7 @@ class MockConsoleManager:
             ret_code = p.poll()
             line = p.stdout.readline()
             yield line
-            time.sleep(0.2)
+            time.sleep(1)
             if ret_code is not None or ret_code is not 0:
                 break
 

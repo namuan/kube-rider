@@ -40,7 +40,7 @@ class Ui_PodItemWidget(object):
         self.horizontalLayout_2.addItem(spacerItem)
         self.lbl_pod_count = QtWidgets.QLabel(PodItemWidget)
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         font.setItalic(False)
         self.lbl_pod_count.setFont(font)
         self.lbl_pod_count.setObjectName("lbl_pod_count")

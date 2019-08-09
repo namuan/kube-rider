@@ -10,7 +10,7 @@ class ExecShellInteractor:
 
     def run(self, pod_name, container_name, shell_cmd):
         cmd = self.kcb.ctx().ns().command(
-            f"exec {pod_name} -c {container_name} {shell_cmd}"
+            f"exec -it {pod_name} -c {container_name} {shell_cmd}"
         ).complete_command()
         app.data.save_command(cmd)
         self.kcb.start_command(cmd)

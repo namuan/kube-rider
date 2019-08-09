@@ -23,4 +23,4 @@ class KubeResourceInteractor(Interactor):
 
     def on_result(self, result):
         output = result['output']
-        print(output)
+        app.data.save_kube_resource(output)

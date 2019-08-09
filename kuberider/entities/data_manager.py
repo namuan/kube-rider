@@ -81,3 +81,6 @@ class DataManager:
 
     def save_pod_events(self, pod_events: List):
         self.signals.pod_events_loaded.emit(pod_events)
+
+    def save_kube_resource(self, kube_resource_output):
+        self.signals.kube_resource_applied.emit(kube_resource_output)

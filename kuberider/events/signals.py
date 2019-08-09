@@ -17,6 +17,7 @@ class AppSignals(QObject):
     filter_enabled = pyqtSignal()
     filter_cleared = pyqtSignal()
     output_generated = pyqtSignal(str)
+    kube_resource_applied = pyqtSignal(str)
 
 
 class AppCommands(QObject):

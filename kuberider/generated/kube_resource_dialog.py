@@ -18,7 +18,7 @@ class Ui_KubeResourceDialog(object):
         KubeResourceDialog.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         KubeResourceDialog.setModal(True)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(KubeResourceDialog)
-        self.verticalLayout_2.setContentsMargins(5, 5, 5, 5)
+        self.verticalLayout_2.setContentsMargins(12, 12, 12, 12)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.txt_resource_definition = QtWidgets.QPlainTextEdit(KubeResourceDialog)
         self.txt_resource_definition.setObjectName("txt_resource_definition")

@@ -78,7 +78,7 @@
       <widget class="QLabel" name="lbl_pod_count">
        <property name="font">
         <font>
-         <pointsize>12</pointsize>
+         <pointsize>10</pointsize>
          <italic>false</italic>
         </font>
        </property>

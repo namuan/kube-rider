@@ -10,15 +10,15 @@ QListWidget::item:selected {
 QLabel[accessibleName="running"] {
     background-color: #01721d;
     color : white;
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
     border-radius: 4px;
 }
 
 QLabel[accessibleName="waiting"] {
     background-color: #d8a413;
     color : white;
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
     border-radius: 4px;
 }

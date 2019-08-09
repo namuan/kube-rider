@@ -18,7 +18,7 @@ def toolbar_items(self):
     toolbar_ctx_list = QComboBox(self)
     toolbar_ctx_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
     toolbar_ctx_list.setDuplicatesEnabled(False)
-    toolbar_ctx_list.currentTextChanged.connect(
+    toolbar_ctx_list.currentIndexChanged[str].connect(
         lambda new_ctx: self.toolbar_presenter.on_current_context_changed(new_ctx)
     )
     toolbar_ctx_list_action = QWidgetAction(self)

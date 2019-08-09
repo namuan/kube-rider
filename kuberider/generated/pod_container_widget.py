@@ -27,7 +27,7 @@ class Ui_PodContainerWidget(object):
         self.lbl_container_name.setObjectName("lbl_container_name")
         self.horizontalLayout_2.addWidget(self.lbl_container_name)
         self.lbl_container_status = QtWidgets.QLabel(PodContainerWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lbl_container_status.sizePolicy().hasHeightForWidth())

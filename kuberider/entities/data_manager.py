@@ -9,11 +9,15 @@ from kuberider.events.signals import AppSignals
 
 class DataManager:
     signals = AppSignals()
-    app_state = AppState()
+    _app_state = AppState()
 
     def __init__(self, app_dir):
         db_path = f"sqlite:///{app_dir}/kuberider.db"
         self.db = dataset.connect(db_path)
+
+    @property
+    def app_state(self):
+        return self._app_state
 
     def save_command(self, new_command):
         logging.info(f"Command added: {new_command}")
@@ -84,3 +88,6 @@ class DataManager:
 
     def save_kube_resource(self, kube_resource_output):
         self.signals.kube_resource_applied.emit(kube_resource_output)
+
+    def pod_deleted(self):
+        self.signals.pod_deleted.emit()

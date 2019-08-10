@@ -2,10 +2,10 @@ import logging
 from typing import Optional, List
 
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import Qt, QAbstractItemModel
-from PyQt5.QtWidgets import QListWidgetItem
+from PyQt5.QtCore import Qt, QAbstractItemModel, QModelIndex
+from PyQt5.QtWidgets import QListWidgetItem, QAction, QMenu, QMessageBox
 
-from kuberider.domain.pods_interactor import GetPodsInteractor
+from kuberider.domain.pods_interactor import GetPodsInteractor, DeletePodInteractor
 from kuberider.entities.model import KubePodItem
 from kuberider.settings.app_settings import app
 from kuberider.widgets.pod_item_widget import PodItemWidget
@@ -15,6 +15,18 @@ class PodListPresenter:
     def __init__(self, parent_view=None):
         self.view = parent_view
         self.get_pods = GetPodsInteractor()
+        self.delete_pod = DeletePodInteractor()
+
+        # context menu
+        self.view.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.view.customContextMenuRequested.connect(self.show_context_menu)
+
+        # Context Menu setup
+        remove_action = QAction("Delete", self.view)
+        remove_action.triggered.connect(self.on_remove_selected_item)
+
+        self.menu = QMenu()
+        self.menu.addAction(remove_action)
 
         # ui events
         self.view.clicked.connect(self.ui_pod_selected)
@@ -22,11 +34,12 @@ class PodListPresenter:
         # domain events
         app.data.signals.namespace_changed.connect(self.on_namespace_changed)
         app.data.signals.pods_loaded.connect(self.on_pods_loaded)
+        app.data.signals.pod_deleted.connect(self.get_all_pods)
+        app.data.signals.filter_enabled.connect(self.on_namespace_changed)
+        app.data.signals.filter_cleared.connect(self.on_namespace_changed)
         app.commands.reload_pods.connect(self.get_all_pods)
         app.commands.update_pods.connect(self.update_pending_pod)
         app.commands.log_pods.connect(self.log_all_pods)
-        app.data.signals.filter_enabled.connect(self.on_namespace_changed)
-        app.data.signals.filter_cleared.connect(self.on_namespace_changed)
 
     def ui_pod_selected(self):
         pod_item: KubePodItem = self.currently_selected_pod()
@@ -123,3 +136,24 @@ class PodListPresenter:
             print(item_widget.text())
             pod_info = pod_widget.get_data()
             logging.info(f"{pod_info.name} -> {pod_info.pod_status}")
+
+    def show_context_menu(self, position):
+        index: QModelIndex = self.view.indexAt(position)
+        if not index.isValid():
+            return
+
+        global_position = self.view.viewport().mapToGlobal(position)
+        self.menu.exec_(global_position)
+
+    def on_remove_selected_item(self):
+        pod_item = self.currently_selected_pod()
+        app_state = app.data.app_state
+        msg_box = QMessageBox(
+            QMessageBox.Warning,
+            "Confirmation",
+            f"Selected context {app_state.current_context} and namespace {app_state.current_namespace}\nDelete {pod_item.name}?",
+            QMessageBox.Ok | QMessageBox.Cancel
+        )
+        msg_box.setDefaultButton(QMessageBox.Ok)
+        if msg_box.exec_() == QMessageBox.Ok:
+            self.delete_pod.delete(pod_item.name)

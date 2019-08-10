@@ -18,6 +18,7 @@ class AppSignals(QObject):
     filter_cleared = pyqtSignal()
     output_generated = pyqtSignal(str)
     kube_resource_applied = pyqtSignal(str)
+    pod_deleted = pyqtSignal()
 
 
 class AppCommands(QObject):

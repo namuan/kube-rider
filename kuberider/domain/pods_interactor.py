@@ -86,3 +86,18 @@ class GetPodEventsInteractor(Interactor):
         output = result['output']
         kube_pod_events = KubePodEvents.from_json_str(output)
         app.data.save_pod_events(kube_pod_events.items)
+
+
+class DeletePodInteractor(Interactor):
+
+    def __init__(self):
+        super().__init__(on_success=self.on_result, on_failure=self.on_result)
+
+    def delete(self, pod_name):
+        app.data.signals.command_started.emit(f"Deleting Pod {pod_name}", False)
+        delete_command = f"delete pod {pod_name}"
+        self.kcb.ctx().ns().command(delete_command).start()
+
+    def on_result(self, result):
+        app.data.signals.command_finished.emit()
+        app.data.pod_deleted()

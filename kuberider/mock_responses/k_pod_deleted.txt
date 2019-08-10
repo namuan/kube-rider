@@ -1,0 +1,1 @@
+Get Response from delete pod command

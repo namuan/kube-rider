@@ -12,7 +12,7 @@ is_offline = os.getenv("MOCKED", "false").lower() == "true"
 
 class CommandSignals(QObject):
     started = pyqtSignal(str)
-    finished = pyqtSignal(str)
+    finished = pyqtSignal(str, dict)
     success = pyqtSignal(dict)
     failure = pyqtSignal(dict)
     partial_output = pyqtSignal(str)
@@ -45,6 +45,8 @@ class CommandThread(BaseCommand):
         if not self._command:
             logging.warning("No Commands to run")
             return
+
+        result = {}
         try:
             app.data.save_command(self.command)
             self.signals.started.emit(self.command)
@@ -60,11 +62,11 @@ class CommandThread(BaseCommand):
             result = {
                 'command': self.command,
                 'status': False,
-                'output': e
+                'output': e.output.decode('utf-8')
             }
             self.signals.failure.emit(result)
         finally:
-            self.signals.finished.emit(self.command)
+            self.signals.finished.emit(self.command, result)
 
 
 class TailCommandThread(BaseCommand):
@@ -77,6 +79,7 @@ class TailCommandThread(BaseCommand):
         self.signals.started.emit(self.command)
         for line in self.console_manager.run_long_running_command(self.command):
             self.signals.partial_output.emit(line.strip().decode('utf-8'))
+        self.signals.finished.emit(self.command, {})
 
     def stop_process(self):
         self.console_manager.abort_long_running_command = True

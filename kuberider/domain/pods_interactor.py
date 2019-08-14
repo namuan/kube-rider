@@ -12,11 +12,9 @@ class GetPodsInteractor(Interactor):
         super().__init__(on_success=self.on_result, on_failure=self.on_result)
 
     def run(self):
-        app.data.signals.command_started.emit("Getting all pods", False)
         self.kcb.ctx().ns().command("get pods -o json").start()
 
     def on_result(self, result):
-        app.data.signals.command_finished.emit()
         output = result['output']
         kube_pods: KubePods = KubePods.from_json_str(output)
         app.data.save_pods(kube_pods.items)
@@ -41,29 +39,32 @@ class FilterPodsInteractor:
 
 
 class PodLogsInteractor(Interactor):
+
     def __init__(self):
         super().__init__(on_success=self.on_full_logs, on_failure=self.on_full_logs)
+
+    def on_full_logs(self, result):
+        output = result['output']
+        app.data.save_partial_output(output)
+
+    def fetch_all(self, pod_name, container_name):
+        logging.info(f"Fetching all logs for {pod_name} -> {container_name}")
+        command = f'logs {pod_name} -c {container_name}'
+        self.kcb.ctx().ns().command(command).start()
+
+
+class PodFollowLogsInteractor:
+
+    def __init__(self):
         self.tct = TailCommandThread()
-        self.ct.signals.partial_output.connect(self.on_partial_output)
+        self.tct.signals.partial_output.connect(self.on_partial_output)
+        self.kcb = Kcb.init(self.tct)
 
     def on_partial_output(self, output):
         logging.debug(f"Read: {output}")
         app.data.save_partial_output(output)
 
-    def on_full_logs(self, result):
-        app.data.signals.command_finished.emit()
-        output = result['output']
-        app.data.save_partial_output(output)
-
-    def fetch_all(self, pod_name, container_name):
-        app.data.signals.command_started.emit("Getting all logs", False)
-        self.kcb = Kcb.init(self.ct)
-        logging.info(f"Fetching all logs for {pod_name} -> {container_name}")
-        command = f'logs {pod_name} -c {container_name}'
-        self.kcb.ctx().ns().command(command).start()
-
     def tail(self, pod_name, container_name):
-        self.kcb = Kcb.init(self.tct)
         logging.info(f"Following logs for {pod_name} -> {container_name}")
         command = f'logs {pod_name} -c {container_name} -f'
         self.kcb.ctx().ns().command(command).start()
@@ -77,12 +78,10 @@ class GetPodEventsInteractor(Interactor):
         super().__init__(on_success=self.on_result, on_failure=self.on_result)
 
     def run(self, pod_name):
-        app.data.signals.command_started.emit("Getting pod events", False)
         event_query = f"--field-selector='involvedObject.name={pod_name}'"
         self.kcb.ctx().ns().command(f"get event {event_query} -o json").start()
 
     def on_result(self, result):
-        app.data.signals.command_finished.emit()
         output = result['output']
         kube_pod_events = KubePodEvents.from_json_str(output)
         app.data.save_pod_events(kube_pod_events.items)
@@ -94,10 +93,8 @@ class DeletePodInteractor(Interactor):
         super().__init__(on_success=self.on_result, on_failure=self.on_result)
 
     def delete(self, pod_name):
-        app.data.signals.command_started.emit(f"Deleting Pod {pod_name}", False)
         delete_command = f"delete pod {pod_name}"
         self.kcb.ctx().ns().command(delete_command).start()
 
     def on_result(self, result):
-        app.data.signals.command_finished.emit()
         app.data.pod_deleted()

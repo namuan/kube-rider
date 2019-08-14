@@ -9,6 +9,7 @@ class AppSignals(QObject):
     context_changed = pyqtSignal(str)
     command_started = pyqtSignal(str, bool)
     command_finished = pyqtSignal()
+    command_failed = pyqtSignal(str)
     namespaces_loaded = pyqtSignal()
     namespace_changed = pyqtSignal()
     pods_loaded = pyqtSignal(list)

@@ -133,7 +133,6 @@ class PodListPresenter:
         for ic in range(total_items):
             item_widget: QListWidgetItem = self.view.item(ic)
             pod_widget = self.view.itemWidget(item_widget)
-            print(item_widget.text())
             pod_info = pod_widget.get_data()
             logging.info(f"{pod_info.name} -> {pod_info.pod_status}")
 

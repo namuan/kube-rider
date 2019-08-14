@@ -5,7 +5,7 @@ from kuberider.settings.app_settings import app
 class ContextsLoaderInteractor(Interactor):
     def __init__(self):
         super().__init__(
-            on_success=self.on_result, on_failure=self.on_result
+            on_success=self.on_result
         )
 
     def load_contexts(self):

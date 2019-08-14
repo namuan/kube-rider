@@ -2,7 +2,7 @@ from typing import Optional
 
 from PyQt5.QtCore import Qt
 
-from ..domain.pods_interactor import PodLogsInteractor
+from ..domain.pods_interactor import PodLogsInteractor, PodFollowLogsInteractor
 from ..settings.app_settings import app
 from ..ui.pod_logs_dialog import PodLogsDialog
 
@@ -15,6 +15,7 @@ class PodLogsPresenter:
         self.parent = parent
         self.pod_logs_dialog = PodLogsDialog(self.parent)
         self.pods_logs = PodLogsInteractor()
+        self.pogs_follow_logs = PodFollowLogsInteractor()
 
         # ui events
         self.pod_logs_dialog.btn_close_logs.pressed.connect(self.on_close_logs_dialog)
@@ -34,7 +35,7 @@ class PodLogsPresenter:
     def on_close_logs_dialog(self):
         self.pod_name = None
         self.container_name = None
-        self.pods_logs.stop_tail()
+        self.pogs_follow_logs.stop_tail()
         self.pod_logs_dialog.hide_dialog()
 
     def on_output_generated(self, output):
@@ -42,13 +43,15 @@ class PodLogsPresenter:
 
     def follow_logs(self, state):
         if state == Qt.Checked:
-            self.pods_logs.stop_tail()
+            self.pogs_follow_logs.stop_tail()
             self.start_tailing()
+        else:
+            self.pogs_follow_logs.stop_tail()
 
     def start_tailing(self):
         follow_logs = self.pod_logs_dialog.chk_follow_logs.isChecked()
         self.pod_logs_dialog.txt_pod_logs.clear()
         if follow_logs:
-            self.pods_logs.tail(self.pod_name, self.container_name)
+            self.pogs_follow_logs.tail(self.pod_name, self.container_name)
         else:
             self.pods_logs.fetch_all(self.pod_name, self.container_name)

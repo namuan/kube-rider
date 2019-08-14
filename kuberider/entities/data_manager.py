@@ -24,6 +24,9 @@ class DataManager:
         self.app_state.commands.append(new_command)
         self.signals.command_added.emit(new_command)
 
+    def save_command_error(self, error):
+        self.signals.command_failed.emit(error)
+
     def update_command_status(self, command, started=False):
         if started:
             self.signals.command_started.emit(command, False)

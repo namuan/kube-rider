@@ -18,10 +18,10 @@ class Kcb(QObject):
         c.command_thread = command_thread
 
         c.command_thread.signals.started.connect(
-            lambda c: app.data.update_command_status(c, started=True)
+            lambda cmd: app.data.update_command_status(cmd, started=True)
         )
         c.command_thread.signals.finished.connect(
-            lambda c: app.data.update_command_status(c, started=False)
+            lambda cmd: app.data.update_command_status(cmd, started=False)
         )
 
         return c

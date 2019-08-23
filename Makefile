@@ -1,9 +1,15 @@
 export PROJECTNAME=$(shell basename "$(PWD)")
 
-.SILENT: ;               # no need for @
+.SILENT: ; # no need for @
+
+setup: ## Setup virtual environment and install dependencies
+	rm -rf venv
+	python3 -m venv venv
+	. venv/bin/activate
+	pip install -r requirements.txt
 
 venv: ## Activates local venv
-	source venv/bin/activate
+	. venv/bin/activate
 
 uic: res ## Converts ui files to python
 	for i in `ls resources/ui/*.ui`; do FNAME=`basename $${i} ".ui"`; ./venv/bin/pyuic5 $${i} > "kuberider/generated/$${FNAME}.py"; done
@@ -13,6 +19,10 @@ res: venv ## Generates and compresses resource file
 
 icns: ## Generates icon files from svg
 	echo "Run ./mk-icns.sh kuberider/images/kuberider.svg kuberider"
+
+run: uic ## Runs the application
+	export PYTHONPATH=`pwd`:$${PYTHONPATH} && \
+	python3 kuberider/main.py
 
 .PHONY: help
 .DEFAULT_GOAL := help

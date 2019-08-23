@@ -4,12 +4,13 @@ export PROJECTNAME=$(shell basename "$(PWD)")
 
 setup: ## Setup virtual environment and install dependencies
 	rm -rf venv
-	python3 -m venv venv
-	. venv/bin/activate
-	pip install -r requirements.txt
+	echo "Run the following commands"
+	echo "python3 -m venv venv"
+	echo "source venv/bin/activate"
+	echo "pip install -r requirements.txt"
 
 venv: ## Activates local venv
-	. venv/bin/activate
+	source venv/bin/activate
 
 uic: res ## Converts ui files to python
 	for i in `ls resources/ui/*.ui`; do FNAME=`basename $${i} ".ui"`; ./venv/bin/pyuic5 $${i} > "kuberider/generated/$${FNAME}.py"; done

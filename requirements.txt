@@ -1,4 +1,4 @@
-PyQt5 == 5.12.1
+sip
 tinydb
 requests
 attrs
@@ -6,3 +6,4 @@ cattrs
 dataset
 toolz
 arrow
+PyQt5 == 5.12.1

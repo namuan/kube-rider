@@ -33,9 +33,7 @@ app_name = kuberider.__appname__
 version = kuberider.__version__
 description = kuberider.__description__
 
-tmp_package_dir = Path(os.getcwd()).joinpath("tmp-packaging")
-dist_dir = tmp_package_dir.joinpath('dist').as_posix()
-bdist_dir = tmp_package_dir.joinpath('build').as_posix(),
+dist_dir = Path(os.getcwd()).joinpath('dist').as_posix()
 
 APP = ['kuberider/main.py']
 
@@ -55,7 +53,7 @@ setup(
     name=app_name,
     version=version,
     description=description,
-    author="NL",
+    author="nmn",
     author_email='info@deskriders.dev',
     url='https://github.com/namuan/kube-rider',
     packages=[
@@ -84,13 +82,6 @@ setup(
     install_requires=requirements,
     zip_safe=False,
     keywords='Desktop Kubernetes Client',
-    classifiers=[
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-    ],
     test_suite='tests',
     tests_require=test_requirements,
     **extra_options
@@ -104,7 +95,6 @@ if py2app_build:
         'QtDeclarative.framework',
         'QtHelp.framework',
         'QtMultimedia.framework',
-        'QtNetwork.framework',
         'QtScript.framework',
         'QtScriptTools.framework',
         'QtSql.framework',

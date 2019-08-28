@@ -24,8 +24,6 @@ class AppSignals(QObject):
 
 class AppCommands(QObject):
     reload_pods = pyqtSignal()
-    update_pods = pyqtSignal()
-    log_pods = pyqtSignal()
     open_pod_logs = pyqtSignal(str, str)
     on_exec_shell = pyqtSignal(str, str)
     on_port_forward = pyqtSignal(str, str)

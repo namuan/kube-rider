@@ -3,7 +3,7 @@ from typing import Optional, List
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt, QAbstractItemModel, QModelIndex
-from PyQt5.QtWidgets import QListWidgetItem, QAction, QMenu, QMessageBox
+from PyQt5.QtWidgets import QAction, QMenu, QMessageBox
 
 from kuberider.domain.pods_interactor import GetPodsInteractor, DeletePodInteractor
 from kuberider.entities.model import KubePodItem
@@ -38,8 +38,6 @@ class PodListPresenter:
         app.data.signals.filter_enabled.connect(self.on_namespace_changed)
         app.data.signals.filter_cleared.connect(self.on_namespace_changed)
         app.commands.reload_pods.connect(self.get_all_pods)
-        app.commands.update_pods.connect(self.update_pending_pod)
-        app.commands.log_pods.connect(self.log_all_pods)
 
     def ui_pod_selected(self):
         pod_item: KubePodItem = self.currently_selected_pod()
@@ -111,30 +109,6 @@ class PodListPresenter:
         item_widget = self.view.item(item_row)
         pod_widget: PodItemWidget = self.view.itemWidget(item_widget)
         return pod_widget.get_data()
-
-    def update_pending_pod(self):
-        """Only for testing. Remove later"""
-        pod_to_update = "hello-node-64c578bdf8-mwpff"
-        changed_pod: KubePodItem = KubePodItem(
-            apiVersion="",
-            kind=None,
-            metadata={},
-            spec={},
-            status={}
-        )
-        changed_pod.metadata['name'] = pod_to_update
-        changed_pod.status['phase'] = 'Completed'
-        self.add_or_update_pod_item(changed_pod)
-
-    def log_all_pods(self):
-        """Only for testing. Remove later"""
-        total_items = self.view.count()
-        logging.info(f"Logging All Pods: {total_items}")
-        for ic in range(total_items):
-            item_widget: QListWidgetItem = self.view.item(ic)
-            pod_widget = self.view.itemWidget(item_widget)
-            pod_info = pod_widget.get_data()
-            logging.info(f"{pod_info.name} -> {pod_info.pod_status}")
 
     def show_context_menu(self, position):
         index: QModelIndex = self.view.indexAt(position)

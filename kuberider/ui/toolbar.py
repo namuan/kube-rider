@@ -19,6 +19,10 @@ def toolbar_items(self):
 
     self.toolbar.addSeparator()
 
+    toolbar_load_contexts_action = QAction(QIcon(":/images/load-contexts-48.png"), 'Load Contexts', self)
+    toolbar_load_contexts_action.triggered.connect(self.toolbar_presenter.on_toolbar_load_contexts)
+    self.toolbar.addAction(toolbar_load_contexts_action)
+
     toolbar_ctx_list = QComboBox(self)
     toolbar_ctx_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
     toolbar_ctx_list.setDuplicatesEnabled(False)
@@ -29,8 +33,6 @@ def toolbar_items(self):
     toolbar_ctx_list_action.setText("Contexts")
     toolbar_ctx_list_action.setDefaultWidget(toolbar_ctx_list)
     self.toolbar.addAction(toolbar_ctx_list_action)
-
-    self.toolbar.addSeparator()
 
     toolbar_ns_list = QComboBox(self)
     toolbar_ns_list.setSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)

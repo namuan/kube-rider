@@ -4,6 +4,7 @@
         <file>images/plus-48.png</file>
         <file>images/download-48.png</file>
         <file>images/download-disabled-48.png</file>
+        <file>images/load-contexts-48.png</file>
         <file>themes/light.qss</file>
     </qresource>
 </RCC>

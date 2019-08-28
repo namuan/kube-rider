@@ -15,14 +15,13 @@ class KubeRiderMainPresenter:
         if app.window_state():
             self.view.restoreState(app.window_state())
 
-        self.contexts_loader = ContextsLoaderInteractor()
+
 
     def after_window_loaded(self):
         if not self.initial_load:
             return
 
         self.initial_load = False
-        self.contexts_loader.load_contexts()
         self.check_updates()
 
     def check_updates(self):

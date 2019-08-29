@@ -36,3 +36,4 @@ class CurrentContextInteractor(Interactor):
 class ChangeContextInteractor(Interactor):
     def update_context(self, new_context):
         app.data.update_current_context(new_context)
+        app.data.signals.context_changed.emit(new_context)

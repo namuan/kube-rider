@@ -25,6 +25,9 @@ class ToolbarPresenter:
     def on_toolbar_load_contexts(self):
         self.contexts_loader.load_contexts()
 
+    def on_toolbar_context_changed(self, new_context_name):
+        self.change_context.update_context(new_context_name)
+
     def __get_combox_box(self, action_name):
         toolbar_actions = self.toolbar.actions()
         tags_list_action = next(act for act in toolbar_actions if act.text() == action_name)
@@ -51,10 +54,9 @@ class ToolbarPresenter:
         self.contexts_loaded = True
         self.current_context.current_context()
 
-    def on_current_context_changed(self, new_context_name):
+    def on_current_context_changed(self, selected_context):
         if self.contexts_loaded:
             self.namespaces_loaded = False
-            self.change_context.update_context(new_context_name)
             self.namespaces.load_namespaces()
 
     def on_current_namespace_changed(self, new_namespace_name):

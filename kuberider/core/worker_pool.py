@@ -62,7 +62,7 @@ class CommandThread(BaseCommand):
             result = {
                 'command': self.command,
                 'status': False,
-                'output': e.output.decode('utf-8')
+                'output': e
             }
             self.signals.failure.emit(result)
         finally:

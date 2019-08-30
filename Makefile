@@ -3,11 +3,11 @@ export PROJECTNAME=$(shell basename "$(PWD)")
 .SILENT: ; # no need for @
 
 setup: ## Setup virtual environment and install dependencies
-	rm -rf venv
-	echo "Run the following commands"
+	echo "Run the following commands to install required dependencies"
 	echo "python3 -m venv venv"
 	echo "source venv/bin/activate"
 	echo "pip install -r requirements.txt"
+	echo "Once everything is installed, 'make run' to run the application"
 
 venv: ## Activates local venv
 	source venv/bin/activate
@@ -21,12 +21,12 @@ res: venv ## Generates and compresses resource file
 icns: ## Generates icon files from svg
 	echo "Run ./mk-icns.sh kuberider/images/kuberider.svg kuberider"
 
-run: uic ## Runs the application
+run:  ## Runs the application
 	export PYTHONPATH=`pwd`:$${PYTHONPATH} && \
 	python3 kuberider/main.py
 
 .PHONY: help
-.DEFAULT_GOAL := help
+.DEFAULT_GOAL := setup
 
 help: Makefile
 	echo

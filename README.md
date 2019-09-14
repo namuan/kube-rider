@@ -3,7 +3,20 @@
 A simple desktop client for Kubernetes. 
 See https://deskriders.dev/tags/kuberider/ for development updates.
 
-### Installation
+### Features
+
+[✓] Uses kubectl  
+[✓] Display kubectl commands for learning  
+[✓] Context and Namespace switching  
+[✓] Pod list and watching  
+[✓] Create/Delete Pods
+[✓] List Pod containers and Events  
+[✓] Open container logs  
+[✓] Running commands in container  
+[ ] Container Port forwarding  
+[ ] Follow container logs
+
+### Setup
 
 Run `make` to display list of commands to install required dependencies in a virtual environment.
 

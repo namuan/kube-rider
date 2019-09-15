@@ -12,11 +12,14 @@ class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
     def __init__(self, pod_info: KubePodItem, pod_container: KubePodContainer, parent=None):
         super(PodContainerWidget, self).__init__(parent)
         self.setupUi(self)
+        self.pod_info = pod_info
+        self.set_data(pod_container)
+
+        # ui events
         self.btn_open_logs.clicked.connect(self.on_open_logs)
         self.btn_exec_shell.clicked.connect(self.on_exec_shell)
         self.btn_port_forward.clicked.connect(self.on_port_forward)
-        self.pod_info = pod_info
-        self.set_data(pod_container)
+        self.btn_follow_logs.clicked.connect(self.on_follow_logs)
 
     def set_data(self, pod_container: KubePodContainer):
         self.pod_container = pod_container
@@ -38,3 +41,6 @@ class PodContainerWidget(QtWidgets.QWidget, Ui_PodContainerWidget):
 
     def on_port_forward(self):
         app.commands.on_port_forward.emit(self.pod_info.name, self.pod_container.name)
+
+    def on_follow_logs(self):
+        app.commands.on_follow_logs.emit(self.pod_info.name, self.pod_container.name)

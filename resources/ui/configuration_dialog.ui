@@ -57,6 +57,9 @@
      <string>Updates</string>
     </attribute>
     <widget class="QCheckBox" name="chk_updates_startup">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -68,8 +71,11 @@
      <property name="text">
       <string>Check for updates on start up</string>
      </property>
-     <property name="checked">
+     <property name="checkable">
       <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
      </property>
     </widget>
    </widget>

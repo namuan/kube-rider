@@ -26,9 +26,6 @@ class Ui_PodLogsDialog(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.chk_follow_logs = QtWidgets.QCheckBox(PodLogsDialog)
-        self.chk_follow_logs.setObjectName("chk_follow_logs")
-        self.horizontalLayout.addWidget(self.chk_follow_logs)
         self.btn_close_logs = QtWidgets.QPushButton(PodLogsDialog)
         self.btn_close_logs.setObjectName("btn_close_logs")
         self.horizontalLayout.addWidget(self.btn_close_logs)
@@ -40,7 +37,6 @@ class Ui_PodLogsDialog(object):
     def retranslateUi(self, PodLogsDialog):
         _translate = QtCore.QCoreApplication.translate
         PodLogsDialog.setWindowTitle(_translate("PodLogsDialog", "Logs ..."))
-        self.chk_follow_logs.setText(_translate("PodLogsDialog", "Follow"))
         self.btn_close_logs.setText(_translate("PodLogsDialog", "Close"))
 
 

@@ -45,6 +45,7 @@ class PodLogsInteractor(Interactor):
         self.kcb.ctx().ns().command(command).start()
 
 
+# @todo: Remove if not used in future
 class PodFollowLogsInteractor:
 
     def __init__(self):

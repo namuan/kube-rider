@@ -84,6 +84,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QToolButton" name="btn_follow_logs">
+       <property name="text">
+        <string>Follow Logs</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>

@@ -17,7 +17,14 @@ class ExecShellInteractor:
 
     def port_forward(self, pod_name, container_name, ports):
         cmd = self.kcb.ctx().ns().command(
-            f"port-forward {pod_name} -c {container_name} {ports}"
+            f"port-forward {pod_name} {ports}"
+        ).complete_command()
+        app.data.save_command(cmd)
+        self.kcb.start_command(cmd)
+
+    def follow_logs(self, pod_name, container_name):
+        cmd = self.kcb.ctx().ns().command(
+            f'logs {pod_name} -c {container_name} -f'
         ).complete_command()
         app.data.save_command(cmd)
         self.kcb.start_command(cmd)

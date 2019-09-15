@@ -27,3 +27,4 @@ class AppCommands(QObject):
     open_pod_logs = pyqtSignal(str, str)
     on_exec_shell = pyqtSignal(str, str)
     on_port_forward = pyqtSignal(str, str)
+    on_follow_logs = pyqtSignal(str, str)

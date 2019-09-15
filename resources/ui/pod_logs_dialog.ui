@@ -45,13 +45,6 @@
       </spacer>
      </item>
      <item>
-      <widget class="QCheckBox" name="chk_follow_logs">
-       <property name="text">
-        <string>Follow</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="btn_close_logs">
        <property name="text">
         <string>Close</string>

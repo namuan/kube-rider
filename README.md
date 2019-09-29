@@ -13,8 +13,8 @@ See https://deskriders.dev/tags/kuberider/ for development updates.
 [✓] List Pod containers and Events  
 [✓] Open container logs  
 [✓] Running commands in container  
-[ ] Container Port forwarding  
-[ ] Follow container logs
+[✓] Container Port forwarding  
+[✓] Follow container logs
 
 ### Setup
 

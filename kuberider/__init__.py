@@ -1,4 +1,4 @@
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 __appname__ = 'kuberider'
 __description__ = 'Kubernetes Desktop Application'
 __desktopid__ = 'com.deskriders.KubeRider'

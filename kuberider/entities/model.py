@@ -5,10 +5,7 @@ from typing import List, Dict, Any, Optional
 import arrow
 import attr
 import cattr
-from arrow.factory import ArrowParseWarning
 from toolz import itertoolz
-
-warnings.simplefilter("ignore", ArrowParseWarning)
 
 APP_STATE_RECORD_TYPE = "app_state"
 

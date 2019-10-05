@@ -45,10 +45,10 @@ class PodListPresenter:
         app.data.signals.pod_selected.emit(pod_item)
 
     def on_namespace_changed(self):
-        self.view.clear()
         self.get_all_pods()
 
     def get_all_pods(self):
+        self.view.clear()
         self.get_pods.run()
 
     def currently_selected_pod(self) -> Optional[KubePodItem]:

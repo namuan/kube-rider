@@ -14,7 +14,6 @@ class Kcb(QObject):
     @staticmethod
     def init(command_thread: CommandThread):
         c = Kcb()
-        c.kubectl = app.load_kubectl_path()
         c.command_thread = command_thread
 
         c.command_thread.signals.started.connect(
@@ -39,7 +38,8 @@ class Kcb(QObject):
         return self
 
     def complete_command(self):
-        c = f"{self.kubectl}"
+        kubectl = app.load_kubectl_path()
+        c = f"{kubectl}"
         if self.ctx_param:
             c += f" {self.ctx_param}"
         if self.ns_param:

@@ -1,4 +1,4 @@
-sip
+sip==4.19.8
 tinydb
 requests
 attrs

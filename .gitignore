@@ -109,3 +109,5 @@ venv.bak/
 .idea/dictionaries/jk.xml
 .idea/workspace.xml
 .idea
+
+.vscode/

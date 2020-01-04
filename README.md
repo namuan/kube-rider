@@ -9,12 +9,16 @@ See https://deskriders.dev/tags/kuberider/ for development updates.
 [✓] Display kubectl commands for learning  
 [✓] Context and Namespace switching  
 [✓] Pod list and watching  
-[✓] Create/Delete Pods
+[✓] Create/Delete Pods  
 [✓] List Pod containers and Events  
 [✓] Open container logs  
 [✓] Running commands in container  
 [✓] Container Port forwarding  
 [✓] Follow container logs
+
+### Demo
+
+[![KubeRider](https://img.youtube.com/vi/fhQuB4BNryo/0.jpg)](https://www.youtube.com/watch?v=fhQuB4BNryo)
 
 ### Setup
 
